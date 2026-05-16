@@ -1,0 +1,220 @@
+[gd_scene format=3 uid="uid://cdlsygg48x0q8"]
+
+[ext_resource type="Script" uid="uid://cfbnn48c23ue3" path="res://UI/ProductDesigner/product_designer.gd" id="1_xojm4"]
+[ext_resource type="Texture2D" uid="uid://bumu3sewhkmbs" path="res://Assets/Logos/artificial-hive.png" id="2_erivy"]
+[ext_resource type="Texture2D" uid="uid://c4l2n0twgyeff" path="res://Assets/Patterns/Tiles/tile_0024.png" id="3_a5u12"]
+[ext_resource type="Texture2D" uid="uid://jejnck0oy4c6" path="res://Assets/Icons/laptop.png" id="4_q06ip"]
+
+[node name="ProductDesigner" type="ColorRect" unique_id=718070896]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xojm4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=839546070]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="LogoPanel" type="Panel" parent="VBoxContainer" unique_id=1370787119]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="LogoTexture" type="TextureRect" parent="VBoxContainer/LogoPanel" unique_id=963605773]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_erivy")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/LogoPanel/LogoTexture" unique_id=1689274468]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 174
+
+[node name="PreviousLogoButton" type="Button" parent="VBoxContainer/LogoPanel/LogoTexture/HBoxContainer" unique_id=1773905468]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 41
+text = "<"
+
+[node name="NextLogoButton" type="Button" parent="VBoxContainer/LogoPanel/LogoTexture/HBoxContainer" unique_id=2049588660]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 41
+text = ">"
+
+[node name="PatternPanel" type="Panel" parent="VBoxContainer" unique_id=249542327]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="PatternTexture" type="TextureRect" parent="VBoxContainer/PatternPanel" unique_id=6654700]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_a5u12")
+stretch_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PatternPanel" unique_id=1640841087]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 174
+
+[node name="PreviousButton" type="Button" parent="VBoxContainer/PatternPanel/HBoxContainer" unique_id=1788917696]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 41
+text = "<"
+
+[node name="NextButton" type="Button" parent="VBoxContainer/PatternPanel/HBoxContainer" unique_id=1614110696]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 41
+text = ">"
+
+[node name="BaseItem" type="Panel" parent="VBoxContainer" unique_id=1174856747]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="ItemTexture" type="TextureRect" parent="VBoxContainer/BaseItem" unique_id=1124074872]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_q06ip")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BaseItem" unique_id=1844092588]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 174
+
+[node name="PreviousItemButton" type="Button" parent="VBoxContainer/BaseItem/HBoxContainer" unique_id=2137040562]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 41
+text = "<"
+
+[node name="NextItemButton" type="Button" parent="VBoxContainer/BaseItem/HBoxContainer" unique_id=1507219528]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 41
+text = ">"
+
+[node name="NameEdit" type="LineEdit" parent="VBoxContainer" unique_id=1706644399]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Rastilan"
+placeholder_text = "Product Name"
+max_length = 20
+
+[node name="Price" type="SpinBox" parent="VBoxContainer" unique_id=522474834]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 100000.0
+value = 20.0
+
+[node name="PriceLabel" type="Label" parent="VBoxContainer" unique_id=1558916532]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+text = "100
+100
+100"
+
+[node name="ColorPicker" type="ColorPickerButton" parent="VBoxContainer" unique_id=19511243]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+edit_alpha = false
+
+[node name="AddProductButton" type="Button" parent="VBoxContainer" unique_id=2029144602]
+layout_mode = 2
+text = "ADD PRODUCT"
+
+[connection signal="pressed" from="VBoxContainer/LogoPanel/LogoTexture/HBoxContainer/PreviousLogoButton" to="." method="_on_previous_logo_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LogoPanel/LogoTexture/HBoxContainer/NextLogoButton" to="." method="_on_next_logo_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/PatternPanel/HBoxContainer/PreviousButton" to="." method="_on_previous_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/PatternPanel/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BaseItem/HBoxContainer/PreviousItemButton" to="." method="_on_previous_item_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BaseItem/HBoxContainer/NextItemButton" to="." method="_on_next_item_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/Price" to="." method="_on_price_value_changed"]
+[connection signal="color_changed" from="VBoxContainer/ColorPicker" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="pressed" from="VBoxContainer/AddProductButton" to="." method="_on_add_product_button_pressed"]

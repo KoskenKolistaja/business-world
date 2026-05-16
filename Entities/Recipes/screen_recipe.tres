@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="RecipeData" format=3 uid="uid://bauumb334oxku"]
+
+[ext_resource type="Script" uid="uid://c4tyx2thxuopu" path="res://Entities/Items/item_resource.gd" id="1_1elon"]
+[ext_resource type="Script" uid="uid://cme2vxbkqkcmx" path="res://Entities/Recipes/RecipeEntries/recipe_entry.gd" id="1_fnun6"]
+[ext_resource type="Script" uid="uid://cp01bd3q7kwx7" path="res://Entities/Recipes/recipe_resource.gd" id="2_eq2nf"]
+[ext_resource type="Resource" uid="uid://dxp28ghun2v68" path="res://Entities/Items/electronic_parts.tres" id="2_xjx6h"]
+[ext_resource type="Resource" uid="uid://dc7ss53xyt8pu" path="res://Entities/Items/screen.tres" id="3_xu4p7"]
+
+[sub_resource type="Resource" id="Resource_2uc68"]
+script = ExtResource("1_fnun6")
+item = ExtResource("2_xjx6h")
+amount = 1
+metadata/_custom_type_script = "uid://cme2vxbkqkcmx"
+
+[resource]
+script = ExtResource("2_eq2nf")
+inputs = Array[ExtResource("1_fnun6")]([SubResource("Resource_2uc68")])
+outputs = Array[ExtResource("1_1elon")]([ExtResource("3_xu4p7")])
+metadata/_custom_type_script = "uid://cp01bd3q7kwx7"

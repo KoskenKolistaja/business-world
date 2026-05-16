@@ -1,0 +1,33 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="BusinessWorld"
+run/main_scene="uid://wdbhlfltvufg"
+config/features=PackedStringArray("4.6", "Forward Plus")
+config/icon="uid://c4ys032jpt5p1"
+
+[autoload]
+
+UiManager="*uid://bsad03osi1r8e"
+ProductManager="*uid://dhfm8e63kh8wc"
+
+[layer_names]
+
+3d_physics/layer_10="Mouse Raycast"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"

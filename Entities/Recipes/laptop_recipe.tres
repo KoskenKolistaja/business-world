@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="RecipeData" format=3 uid="uid://bo5wam0ybxm4g"]
+
+[ext_resource type="Script" uid="uid://c4tyx2thxuopu" path="res://Entities/Items/item_resource.gd" id="1_kqpat"]
+[ext_resource type="Script" uid="uid://cme2vxbkqkcmx" path="res://Entities/Recipes/RecipeEntries/recipe_entry.gd" id="1_yofmh"]
+[ext_resource type="Script" uid="uid://cp01bd3q7kwx7" path="res://Entities/Recipes/recipe_resource.gd" id="2_miiyf"]
+[ext_resource type="Resource" uid="uid://dc7ss53xyt8pu" path="res://Entities/Items/screen.tres" id="2_yofmh"]
+[ext_resource type="Resource" uid="uid://duiprhoc3bofv" path="res://Entities/Items/battery.tres" id="3_yofmh"]
+[ext_resource type="Resource" uid="uid://mxetepwhqie2" path="res://Entities/Items/processor.tres" id="4_ljksi"]
+[ext_resource type="Resource" uid="uid://x4ecfltaw5al" path="res://Entities/Items/laptop.tres" id="5_eodbp"]
+
+[sub_resource type="Resource" id="Resource_eodbp"]
+script = ExtResource("1_yofmh")
+item = ExtResource("2_yofmh")
+amount = 1
+metadata/_custom_type_script = "uid://cme2vxbkqkcmx"
+
+[sub_resource type="Resource" id="Resource_5kxs2"]
+script = ExtResource("1_yofmh")
+item = ExtResource("3_yofmh")
+amount = 1
+metadata/_custom_type_script = "uid://cme2vxbkqkcmx"
+
+[sub_resource type="Resource" id="Resource_w2hjd"]
+script = ExtResource("1_yofmh")
+item = ExtResource("4_ljksi")
+amount = 1
+metadata/_custom_type_script = "uid://cme2vxbkqkcmx"
+
+[resource]
+script = ExtResource("2_miiyf")
+inputs = Array[ExtResource("1_yofmh")]([SubResource("Resource_eodbp"), SubResource("Resource_5kxs2"), SubResource("Resource_w2hjd")])
+outputs = Array[ExtResource("1_kqpat")]([ExtResource("5_eodbp")])
+metadata/_custom_type_script = "uid://cp01bd3q7kwx7"

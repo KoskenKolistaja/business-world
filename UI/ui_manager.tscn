@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bsad03osi1r8e"]
+
+[ext_resource type="Script" uid="uid://c3y8w1vg6krqj" path="res://UI/ui_manager.gd" id="1_rl6cm"]
+[ext_resource type="PackedScene" uid="uid://4e3gahuxxaw8" path="res://UI/floating_window.tscn" id="2_qvj1i"]
+
+[node name="UIManager" type="CanvasLayer" unique_id=343831879]
+script = ExtResource("1_rl6cm")
+floating_window_scene = ExtResource("2_qvj1i")
+
+[node name="InventoryWindows" type="Node" parent="." unique_id=1867957906]
+unique_name_in_owner = true
+
+[node name="EditWindows" type="Node" parent="." unique_id=284946376]
+unique_name_in_owner = true
+
+[node name="Control" type="Control" parent="." unique_id=1508820503]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="Control" unique_id=1488027408]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Open Product Designer"
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

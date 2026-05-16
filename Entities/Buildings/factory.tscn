@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://c2xujyh0kfw2s"]
+
+[ext_resource type="Script" uid="uid://dn7veftsn4824" path="res://Entities/Buildings/factory.gd" id="1_a1ll8"]
+[ext_resource type="PackedScene" uid="uid://binxttu4w4c87" path="res://Assets/Models/BaseBuilding.glb" id="2_nk71g"]
+[ext_resource type="Texture2D" uid="uid://cfyygdxcyppv3" path="res://icon.svg" id="3_48c4f"]
+[ext_resource type="PackedScene" uid="uid://k1y5khijrmpl" path="res://Entities/Utility/grid_manager.tscn" id="4_bd6b4"]
+[ext_resource type="PackedScene" uid="uid://cdb78pevposha" path="res://Entities/Utility/item_placer.tscn" id="5_jtm30"]
+[ext_resource type="PackedScene" uid="uid://sm8dnyhxfdqj" path="res://Entities/Placeables/WorkStation/work_station.tscn" id="6_57q65"]
+[ext_resource type="Resource" uid="uid://bo5wam0ybxm4g" path="res://Entities/Recipes/laptop_recipe.tres" id="7_k4rbc"]
+[ext_resource type="Resource" uid="uid://bd3n7f32sjmj2" path="res://Entities/Recipes/battery_recipe.tres" id="8_57q65"]
+[ext_resource type="PackedScene" uid="uid://f42pfe51yc7u" path="res://Entities/Placeables/Storage/storage.tscn" id="8_r2vye"]
+[ext_resource type="Script" uid="uid://ckk42gukxjam7" path="res://Entities/Inventory/Utility/inventory_data.gd" id="9_48c4f"]
+[ext_resource type="PackedScene" uid="uid://krs5wxq2erbm" path="res://Entities/Npcs/Worker/worker.tscn" id="9_a7xfu"]
+[ext_resource type="Script" uid="uid://7jmllw54cvlh" path="res://Entities/Inventory/Utility/inventory_slot.gd" id="10_bd6b4"]
+[ext_resource type="Resource" uid="uid://bauumb334oxku" path="res://Entities/Recipes/screen_recipe.tres" id="12_bd6b4"]
+[ext_resource type="Resource" uid="uid://b3qg3y6vv1j8d" path="res://Entities/Recipes/processor_recipe.tres" id="14_k4rbc"]
+[ext_resource type="PackedScene" uid="uid://brw3kaxtale4i" path="res://Entities/Placeables/ProductStation/product_station.tscn" id="15_k4rbc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vyc70"]
+albedo_texture = ExtResource("3_48c4f")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_buop4"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.24705882)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5374s"]
+data = PackedVector3Array(3.1, 0.099999994, -3.1, 3.1, 0, 3.1, 3.1, 0.099999994, 3.1, 3.1, 0.099999994, -3.1, 3.1, 0, -3.1, 3.1, 0, 3.1, -3.1, 0.099999994, 3.1, -3.1, 0, -3.1, -3.1, 0.099999994, -3.1, -3.1, 0.099999994, 3.1, -3.1, 0, 3.1, -3.1, 0, -3.1, -3.1, 0.099999994, -3.1, 3.1, 0, -3.1, 3.1, 0.099999994, -3.1, -3.1, 0.099999994, -3.1, -3.1, 0, -3.1, 3.1, 0, -3.1, -3, 0, -3, -3.1, 0, 3.1, -3, 0, 3, -3, 0, 3, -3.1, 0, 3.1, 3.1, 0, 3.1, -3, 0, -3, -3.1, 0, -3.1, -3.1, 0, 3.1, -3, 0, 3, 3.1, 0, 3.1, 3, 0, 3, 3, 0, -3, -3.1, 0, -3.1, -3, 0, -3, 3, 0, 3, 3.1, 0, 3.1, 3.1, 0, -3.1, 3, 0, -3, 3.1, 0, -3.1, -3.1, 0, -3.1, 3, 0, 3, 3.1, 0, -3.1, 3, 0, -3, 3, 0, -3, -3, 0, 3, 3, 0, 3, 3, 0, -3, -3, 0, -3, -3, 0, 3, 3, 0.099999994, -3, -3, 0.099999994, 3, -3, 0.099999994, -3, -3.1, 0.099999994, 3.1, -3, 0.099999994, -3, -3, 0.099999994, 3, -3.1, 0.099999994, 3.1, -3, 0.099999994, 3, 3, 0.099999994, 3, -3.1, 0.099999994, 3.1, 3, 0.099999994, 3, 3.1, 0.099999994, 3.1, -3.1, 0.099999994, 3.1, -3.1, 0.099999994, -3.1, -3, 0.099999994, -3, -3.1, 0.099999994, -3.1, 3, 0.099999994, -3, -3, 0.099999994, -3, 3, 0.099999994, -3, -0.70409995, 0.099999994, 3, -3, 0.099999994, 3, -3.1, 0.099999994, -3.1, 3.1, 0.099999994, -3.1, 3, 0.099999994, -3, 3.1, 0.099999994, -3.1, 3.1, 0.099999994, 3.1, 3, 0.099999994, 3, 3.1, 0.099999994, -3.1, 3, 0.099999994, 3, 3, 0.099999994, -3, 0.70409995, 0.099999994, 3, 3, 0.099999994, -3, 3, 0.099999994, 3, -0.70409995, 0.099999994, 3, 3, 0.099999994, -3, 0.70409995, 0.099999994, 3, -0.70409995, 0.099999994, 3.1, -0.70409995, 0.099999994, 3, 0.70409995, 0.099999994, 3, -0.70409995, 0.099999994, 3.1, 0.70409995, 0.099999994, 3, 0.70409995, 0.099999994, 3.1, 3.1, 0, 3.1, 0.70409995, 0.099999994, 3.1, 3.1, 0.099999994, 3.1, 3.1, 0, 3.1, -0.70409995, 0.099999994, 3.1, 0.70409995, 0.099999994, 3.1, -0.70409995, 0.099999994, 3.1, 3.1, 0, 3.1, -3.1, 0, 3.1, -0.70409995, 0.099999994, 3.1, -3.1, 0, 3.1, -3.1, 0.099999994, 3.1)
+
+[sub_resource type="Resource" id="Resource_k4rbc"]
+resource_local_to_scene = true
+script = ExtResource("9_48c4f")
+metadata/_custom_type_script = "uid://ckk42gukxjam7"
+
+[sub_resource type="Resource" id="Resource_r2vye"]
+resource_local_to_scene = true
+script = ExtResource("9_48c4f")
+metadata/_custom_type_script = "uid://ckk42gukxjam7"
+
+[node name="Factory" type="Node3D" unique_id=160489447 node_paths=PackedStringArray("export_storage", "import_storage")]
+script = ExtResource("1_a1ll8")
+export_storage = NodePath("Storage")
+import_storage = NodePath("Storage2")
+
+[node name="BaseBuilding" parent="." unique_id=295257345 instance=ExtResource("2_nk71g")]
+
+[node name="Cube" parent="BaseBuilding" index="0" unique_id=264558784]
+material_override = SubResource("StandardMaterial3D_vyc70")
+
+[node name="Cube_001" parent="BaseBuilding" index="1" unique_id=1111666685]
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_buop4")
+
+[node name="GridManager" parent="." unique_id=372630142 instance=ExtResource("4_bd6b4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -2.5)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1036367482]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=986555073]
+shape = SubResource("ConcavePolygonShape3D_5374s")
+
+[node name="ItemPlacer" parent="." unique_id=1007728842 node_paths=PackedStringArray("grid_manager") instance=ExtResource("5_jtm30")]
+grid_manager = NodePath("../GridManager")
+
+[node name="WorkStation" parent="." unique_id=723183528 node_paths=PackedStringArray("factory") instance=ExtResource("6_57q65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -1.5)
+factory = NodePath("..")
+recipe = ExtResource("7_k4rbc")
+is_laptop = true
+
+[node name="WorkStation4" parent="." unique_id=2009659537 node_paths=PackedStringArray("factory") instance=ExtResource("6_57q65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -5.5)
+factory = NodePath("..")
+recipe = ExtResource("7_k4rbc")
+is_laptop = true
+
+[node name="WorkStation3" parent="." unique_id=2064869176 node_paths=PackedStringArray("factory") instance=ExtResource("6_57q65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 1.5)
+factory = NodePath("..")
+recipe = ExtResource("8_57q65")
+
+[node name="Storage" parent="." unique_id=740370898 instance=ExtResource("8_r2vye")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2, 0, -2)
+is_export = true
+inventory = SubResource("Resource_k4rbc")
+
+[node name="Storage2" parent="." unique_id=2064635175 instance=ExtResource("8_r2vye")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 2)
+is_import = true
+inventory = SubResource("Resource_r2vye")
+
+[node name="Worker" parent="." unique_id=716754369 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+factory = NodePath("..")
+
+[node name="Worker2" parent="." unique_id=1774303518 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+factory = NodePath("..")
+
+[node name="Worker3" parent="." unique_id=1689906087 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+factory = NodePath("..")
+
+[node name="Worker4" parent="." unique_id=940057711 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+factory = NodePath("..")
+
+[node name="Worker5" parent="." unique_id=1518205399 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
+factory = NodePath("..")
+
+[node name="WorkStation5" parent="." unique_id=863606416 node_paths=PackedStringArray("factory") instance=ExtResource("6_57q65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
+factory = NodePath("..")
+recipe = ExtResource("12_bd6b4")
+
+[node name="WorkStation6" parent="." unique_id=1109227781 node_paths=PackedStringArray("factory") instance=ExtResource("6_57q65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1)
+factory = NodePath("..")
+recipe = ExtResource("14_k4rbc")
+
+[node name="WorkStation8" parent="." unique_id=124849568 node_paths=PackedStringArray("factory") instance=ExtResource("6_57q65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+factory = NodePath("..")
+recipe = ExtResource("14_k4rbc")
+
+[node name="ProductStation" parent="." unique_id=40838474 node_paths=PackedStringArray("factory") instance=ExtResource("15_k4rbc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5)
+factory = NodePath("..")
+
+[editable path="BaseBuilding"]

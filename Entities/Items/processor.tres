@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://mxetepwhqie2"]
+
+[ext_resource type="Script" uid="uid://c4tyx2thxuopu" path="res://Entities/Items/item_resource.gd" id="1_3t2nc"]
+[ext_resource type="Texture2D" uid="uid://c4w7u638q2fkc" path="res://Assets/Icons/cpu.png" id="1_v485m"]
+
+[resource]
+script = ExtResource("1_3t2nc")
+id = "3"
+item_name = "processor"
+base_value = 100
+icon = ExtResource("1_v485m")
+is_raw_material = true
+metadata/_custom_type_script = "uid://c4tyx2thxuopu"

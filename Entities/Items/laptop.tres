@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://x4ecfltaw5al"]
+
+[ext_resource type="Texture2D" uid="uid://jejnck0oy4c6" path="res://Assets/Icons/laptop.png" id="1_17wa4"]
+[ext_resource type="Script" uid="uid://c4tyx2thxuopu" path="res://Entities/Items/item_resource.gd" id="1_dfws7"]
+
+[resource]
+script = ExtResource("1_dfws7")
+id = "2"
+item_name = "laptop"
+max_stack_size = 12
+base_value = 300
+icon = ExtResource("1_17wa4")
+is_raw_material = true
+metadata/_custom_type_script = "uid://c4tyx2thxuopu"

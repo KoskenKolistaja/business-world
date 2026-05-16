@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RecipeEntry" format=3 uid="uid://mrk1fbsh4bks"]
+
+[ext_resource type="Resource" uid="uid://dc7ss53xyt8pu" path="res://Entities/Items/screen.tres" id="1_84hfe"]
+[ext_resource type="Script" uid="uid://cme2vxbkqkcmx" path="res://Entities/Recipes/RecipeEntries/recipe_entry.gd" id="1_w2r8o"]
+
+[resource]
+script = ExtResource("1_w2r8o")
+item = ExtResource("1_84hfe")
+amount = 1
+metadata/_custom_type_script = "uid://cme2vxbkqkcmx"

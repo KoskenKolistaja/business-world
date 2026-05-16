@@ -1,0 +1,193 @@
+[gd_scene format=3 uid="uid://krs5wxq2erbm"]
+
+[ext_resource type="Script" uid="uid://c5u5khkp2qbmg" path="res://Entities/Npcs/Worker/worker.gd" id="1_33ul6"]
+
+[sub_resource type="Animation" id="Animation_w5fr2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D/MeshInstance3D3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.7731037, 0.2558629)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D/MeshInstance3D4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.773, -0.256)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node3D/MeshInstance3D4:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.24260077, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node3D/MeshInstance3D3:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.24221681, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_33ul6"]
+resource_name = "raise_hands"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D/MeshInstance3D3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.7731037, 0.2558629), Vector3(0.24333093, 0.9595523, 0.19838041)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D/MeshInstance3D4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.773, -0.256), Vector3(0.24343446, 0.9595585, -0.20411971)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node3D/MeshInstance3D4:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.24260077, 0, 0), Vector3(0.11332612, -0.02485842, 1.0929137)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node3D/MeshInstance3D3:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.24221681, 0, 0), Vector3(-0.11314948, 0.13602996, 1.0928751)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w5fr2"]
+_data = {
+&"RESET": SubResource("Animation_w5fr2"),
+&"raise_hands": SubResource("Animation_33ul6")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33ul6"]
+albedo_color = Color(0.52906674, 0.5290667, 0.5290667, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_33ul6"]
+material = SubResource("StandardMaterial3D_33ul6")
+radius = 0.25
+height = 1.2
+radial_segments = 8
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q8xt4"]
+albedo_color = Color(0.8923469, 0.7432454, 0.622394, 1)
+uv1_scale = Vector3(4, 2, 6)
+uv1_offset = Vector3(-0.49, -0.415, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_33ul6"]
+radius = 0.25
+height = 0.5
+radial_segments = 8
+rings = 4
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_w5fr2"]
+material = SubResource("StandardMaterial3D_33ul6")
+radius = 0.1
+height = 0.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5fr2"]
+resource_local_to_scene = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_q8xt4"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_w5fr2")
+size = Vector2(0.4, 0.4)
+
+[node name="Worker" type="Node3D" unique_id=716754369]
+script = ExtResource("1_33ul6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1192133124]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_w5fr2")
+
+[node name="JobTimer" type="Timer" parent="." unique_id=1493083341]
+unique_name_in_owner = true
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1579736611]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8479887, 0)
+billboard = 1
+
+[node name="Node3D" type="Node3D" parent="." unique_id=909161254]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D" unique_id=734686111]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.6, 0)
+mesh = SubResource("CapsuleMesh_33ul6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D" unique_id=1175891227]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.4249557, 0)
+material_override = SubResource("StandardMaterial3D_q8xt4")
+mesh = SubResource("SphereMesh_33ul6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D" unique_id=591071413]
+transform = Transform3D(1, 0, 0, 0, 0.9708085, 0.23985529, 0, -0.23985529, 0.9708085, 0, 0.7731037, 0.2558629)
+mesh = SubResource("CapsuleMesh_w5fr2")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Node3D" unique_id=772135854]
+transform = Transform3D(1, 0, 0, 0, 0.9707166, -0.24022807, 0, 0.24022807, 0.9707166, 0, 0.773, -0.256)
+mesh = SubResource("CapsuleMesh_w5fr2")
+
+[node name="ItemContainer" type="Node3D" parent="Node3D" unique_id=74919781]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 0.49929968, 0.891, -0.010406175)
+
+[node name="HandItemMesh" type="MeshInstance3D" parent="Node3D/ItemContainer" unique_id=540236905]
+unique_name_in_owner = true
+visible = false
+mesh = SubResource("QuadMesh_q8xt4")
+
+[connection signal="timeout" from="JobTimer" to="." method="_on_job_timer_timeout"]

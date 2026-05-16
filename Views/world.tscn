@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://qqnhsmocwe1m"]
+
+[ext_resource type="PackedScene" uid="uid://c2xujyh0kfw2s" path="res://Entities/Buildings/factory.tscn" id="1_tik66"]
+[ext_resource type="Script" uid="uid://b8iruo2udc74x" path="res://Entities/Player/player_handler.gd" id="2_47p0u"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y7ngv"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_lda8j"]
+sky_material = SubResource("ProceduralSkyMaterial_y7ngv")
+
+[sub_resource type="Environment" id="Environment_tik66"]
+background_mode = 2
+sky = SubResource("Sky_lda8j")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D" unique_id=880314760]
+
+[node name="Ambient" type="Node3D" parent="." unique_id=2069712171]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Ambient" unique_id=1274316666]
+environment = SubResource("Environment_tik66")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Ambient" unique_id=1153540773]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ambient" unique_id=1090105842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+
+[node name="TestBuilding" parent="." unique_id=160489447 instance=ExtResource("1_tik66")]
+
+[node name="PlayerHandler" type="Node3D" parent="." unique_id=2104160144]
+script = ExtResource("2_47p0u")

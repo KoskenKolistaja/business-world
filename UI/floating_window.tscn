@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://4e3gahuxxaw8"]
+
+[ext_resource type="Script" uid="uid://rgjcutxdgnp" path="res://UI/floating_window.gd" id="1_88235"]
+[ext_resource type="PackedScene" uid="uid://dg4k3e2cb7snb" path="res://UI/Inventory/inventory_ui_node.tscn" id="2_7xtv5"]
+[ext_resource type="PackedScene" uid="uid://cdlsygg48x0q8" path="res://UI/ProductDesigner/product_designer.tscn" id="3_yxt8l"]
+[ext_resource type="PackedScene" uid="uid://cvjr5unmc3w40" path="res://UI/ProductStation/product_station_ui.tscn" id="4_riyhw"]
+
+[node name="FloatingWindow" type="Window" unique_id=969948661]
+oversampling_override = 1.0
+title = "Storage Inventory"
+initial_position = 1
+size = Vector2i(400, 500)
+script = ExtResource("1_88235")
+inventory_ui = ExtResource("2_7xtv5")
+product_designer = ExtResource("3_yxt8l")
+product_station_ui = ExtResource("4_riyhw")
+
+[node name="ContentContainer" type="Control" parent="." unique_id=1759136766]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

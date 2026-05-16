@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://v4lkxas3f0e1"]
+
+[ext_resource type="Texture2D" uid="uid://2ganjtl2oxus" path="res://Assets/Icons/tomato.png" id="1_abpep"]
+[ext_resource type="Script" uid="uid://c4tyx2thxuopu" path="res://Entities/Items/item_resource.gd" id="1_bgbcc"]
+
+[resource]
+script = ExtResource("1_bgbcc")
+id = "6"
+item_name = "tomato"
+icon = ExtResource("1_abpep")
+is_raw_material = true
+metadata/_custom_type_script = "uid://c4tyx2thxuopu"

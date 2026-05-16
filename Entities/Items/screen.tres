@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dc7ss53xyt8pu"]
+
+[ext_resource type="Script" uid="uid://c4tyx2thxuopu" path="res://Entities/Items/item_resource.gd" id="1_p2gcm"]
+[ext_resource type="Texture2D" uid="uid://boxgdr4r8we3b" path="res://Assets/Icons/screen.png" id="1_ux0bj"]
+
+[resource]
+script = ExtResource("1_p2gcm")
+id = "4"
+item_name = "screen"
+base_value = 50
+icon = ExtResource("1_ux0bj")
+is_raw_material = true
+metadata/_custom_type_script = "uid://c4tyx2thxuopu"
