@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c7pwx1w8u6xcb"]
+
+[ext_resource type="Texture2D" uid="uid://c3lusd82g78hx" path="res://Assets/Models/BaseMan/suit_textures/Suit Color.png" id="1_c4lkm"]
+[ext_resource type="Texture2D" uid="uid://bath64o4pjhv1" path="res://Assets/Models/BaseMan/suit_textures/Suit Roughness.png" id="2_kmgs3"]
+
+[resource]
+albedo_texture = ExtResource("1_c4lkm")
+roughness_texture = ExtResource("2_kmgs3")

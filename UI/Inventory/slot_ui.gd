@@ -9,7 +9,7 @@ var inventory
 
 func display_slot(slot : InventorySlot):
 	if slot.item:
-		icon = slot.item.icon
+		icon = slot.item.get_logo()
 	else:
 		icon = null
 	amount = slot.amount

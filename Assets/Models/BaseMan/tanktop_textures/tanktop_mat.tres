@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://blbpr7snwdfmm"]
+
+[ext_resource type="Texture2D" uid="uid://xfj1qrd4uvu7" path="res://Assets/Models/BaseMan/tanktop_textures/Tanktop Color.png" id="1_2u1wm"]
+
+[resource]
+albedo_texture = ExtResource("1_2u1wm")

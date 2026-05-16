@@ -1,24 +1,31 @@
 extends Node
 
-var index = 1
+var index = 0
 
 var products = []
 
 
-var example_dic = {"product_id" : 1, "owner_id" : 1, "data" : ProductData.new(), "recipe" : RecipeData}
+var example_dic = {"product_id" : 1, "owner_id" : 1, "data" : ItemData, "recipe" : RecipeData}
 
 
 
-func add_product(new_product : ProductData , new_recipe : RecipeData):
+func add_product(new_product : ItemData , new_recipe : RecipeData):
+	var id = get_free_id()
 	var new_dic = {
-		"product_id" : index,
+		"product_id" : id,
 		"owner_id" : 1,
 		"data" : new_product,
 		"recipe" : new_recipe,
 	}
-	index += 1
 	print(new_dic)
 	products.append(new_dic)
+
+
+func get_free_id():
+	index += 1
+	return index
+
+
 
 func delete_product(id_to_be_deleted : int):
 	

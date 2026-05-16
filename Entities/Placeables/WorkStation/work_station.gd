@@ -33,7 +33,7 @@ func _ready():
 	update_inventory_text()
 	
 	if recipe:
-		var icon = recipe.outputs[0].icon
+		var icon = recipe.outputs[0].get_logo()
 		set_icon(icon)
 
 func get_recipe():

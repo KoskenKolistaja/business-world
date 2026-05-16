@@ -1,0 +1,24 @@
+[gd_resource type="Theme" format=3 uid="uid://c6fafdnahlmo4"]
+
+[ext_resource type="FontFile" uid="uid://k5wwil84buos" path="res://Assets/Fonts/static/SmoochSans-SemiBold.ttf" id="1_hk652"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hk652"]
+border_width_left = 3
+border_width_top = 1
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 4
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[resource]
+default_font = ExtResource("1_hk652")
+default_font_size = 27
+Button/styles/normal = SubResource("StyleBoxFlat_hk652")
+PopupMenu/constants/icon_max_width = 64

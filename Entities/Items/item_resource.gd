@@ -9,3 +9,14 @@ extends Resource
 @export var icon : Texture
 @export var visual : PackedScene
 @export var is_raw_material : bool = false
+
+var design : Design
+
+
+
+
+func get_logo():
+	if design:
+		return design.design_logo
+	else:
+		return icon

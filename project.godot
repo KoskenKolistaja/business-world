@@ -20,6 +20,10 @@ config/icon="uid://c4ys032jpt5p1"
 UiManager="*uid://bsad03osi1r8e"
 ProductManager="*uid://dhfm8e63kh8wc"
 
+[gui]
+
+theme/custom="uid://c6fafdnahlmo4"
+
 [layer_names]
 
 3d_physics/layer_10="Mouse Raycast"

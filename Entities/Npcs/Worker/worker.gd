@@ -11,6 +11,12 @@ var is_processing = false # Guard to prevent await overlap
 
 @export var rotation_speed = 10.0 # Adjust this to make turns faster/slower
 
+
+@onready var state_machine = %AnimationTree.get("parameters/playback")
+
+
+
+
 func _ready():
 	%JobTimer.wait_time = randf_range(0.1,0.2)
 	await get_tree().create_timer(randf_range(0,1)).timeout
@@ -41,23 +47,32 @@ func process_task(task, delta):
 	match task.type:
 		"move":
 			move_to(task.target.global_position, delta)
+			state_machine.travel("run")
 			
 		"pickup":
 			pickup_item(task)
+			state_machine.travel("work")
 			
 		"pickup_output": # Added missing case
 			held_item = task.target.pickup_crafted() 
 			update_hand_item()
 			tasks.remove_at(0)
-			
+			state_machine.travel("work")
 		"deliver":
 			deliver_item(task.target)
-			
+			state_machine.travel("work")
 		"craft":
 			handle_craft_task(task)
-			
+			state_machine.travel("work")
 		"store_output":
 			store_output(task.target)
+			state_machine.travel("work")
+		"wander":
+			move_to(tasks[0]["position"],delta)
+			state_machine.travel("run")
+	
+	if tasks.is_empty():
+		state_machine.travel("idle")
 
 func move_to(target_position, delta):
 	var vector = target_position - self.global_position
@@ -71,7 +86,7 @@ func move_to(target_position, delta):
 		basis = basis.slerp(target_basis, rotation_speed * delta)
 	global_position += direction * speed * delta
 	
-	if vector.length() < 0.5:
+	if vector.length() < 1.0:
 		tasks.remove_at(0)
 
 # Helper function to handle the await safely
@@ -118,10 +133,7 @@ func update_hand_item():
 	var mesh = %HandItemMesh
 	var mat : StandardMaterial3D = mesh.get_active_material(0)
 	if mat and held_item:
-		if held_item is ProductData:
-			mat.albedo_texture = held_item.design_logo
-		else:
-			mat.albedo_texture = held_item.icon
+		mat.albedo_texture = held_item.get_logo()
 		%AnimationPlayer.play("raise_hands")
 		%HandItemMesh.show()
 	elif mat:
@@ -155,6 +167,9 @@ func generate_tasks(job):
 		else:
 			tasks.append({"type": "move", "target": import_storage})
 			tasks.append({"type": "store_output", "target": import_storage})
+	else:
+		var wander_position = self.global_position + Vector3(randf_range(-3,3),0,randf_range(-3,3))
+		tasks.append({"type": "wander","position": wander_position})
 
 func _on_job_timer_timeout():
 	if current_job == null and tasks.is_empty():
@@ -162,7 +177,8 @@ func _on_job_timer_timeout():
 		if new_job:
 			current_job = new_job
 			generate_tasks(new_job)
-
+		elif 0.1 > randf_range(0,1):
+			generate_tasks("none")
 
 func return_job():
 	current_job.reserved = false

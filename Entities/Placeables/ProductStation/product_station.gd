@@ -8,7 +8,7 @@ var product_slot = InventorySlot.new()
 
 @export var factory : Node3D
 
-var product : ProductData
+var product : ItemData
 var recipe : RecipeData
 
 var crafting = false
@@ -47,12 +47,12 @@ func get_free_slot():
 func update_inventory_text():
 	pass
 
-var example_dic = {"product_id" : 1, "owner_id" : 1, "data" : ProductData, "recipe" : RecipeData}
+var example_dic = {"product_id" : 1, "owner_id" : 1, "data" : ItemData, "recipe" : RecipeData}
 
 func on_product_changed(product_dictionary : Dictionary):
-	product = product_dictionary["data"]
+	var data : ItemData = product_dictionary["data"]
 	recipe_changed(product_dictionary["recipe"])
-	set_icon(product.design_logo)
+	set_icon(data.design.design_logo)
 	check_state()
 	print("Product changed")
 

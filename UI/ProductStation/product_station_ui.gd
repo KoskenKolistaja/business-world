@@ -10,7 +10,6 @@ func _ready():
 	initiate_products()
 
 
-
 func initiate_products():
 	var id = multiplayer.get_unique_id()
 	var owned_products : Array = ProductManager.get_products_by_owner(id)
@@ -22,8 +21,7 @@ func initiate_products():
 	
 	for p in owned_products:
 		var data = p["data"]
-		print(data.icon)
-		%OptionButton.add_icon_item(data.icon,data.trademark_name,p["product_id"])
+		%OptionButton.add_icon_item(data.design.design_logo,data.design.trademark_name,p["product_id"])
 
 
 func _on_assign_button_pressed():

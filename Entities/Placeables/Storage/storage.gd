@@ -6,7 +6,7 @@ extends StaticBody3D
 
 @export var inventory : InventoryData
 
-var inventory_slots_amount : int = 8
+var inventory_slots_amount : int = 16
 
 
 func _ready():
@@ -17,7 +17,7 @@ func _ready():
 	var e_parts = preload("res://Entities/Items/electronic_parts.tres")
 	
 	if is_import:
-		inventory.add_item(e_parts,128)
+		inventory.add_item(e_parts,512)
 
 
 func has_amount_of_item(exp_item : ItemData,amount : int = 1):

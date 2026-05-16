@@ -36,5 +36,5 @@ func _refresh_ui():
 		else:
 			# Fallback if your Slot UI is simple
 			if s.item:
-				slot_instance.icon = s.item.icon
+				slot_instance.icon = s.item.get_logo()
 				slot_instance.amount = s.amount

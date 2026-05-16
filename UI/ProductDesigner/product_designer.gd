@@ -86,7 +86,7 @@ var items = [
 ]
 
 
-signal product_accepted(new_product_data : ProductData)
+signal product_accepted(new_product_data : ItemData)
 
 var window
 
@@ -105,25 +105,37 @@ func _ready():
 	
 	if not window:
 		window = get_parent().get_parent()
-		self.product_accepted.connect(
-			ProductManager.add_product
-		)
+		self.product_accepted.connect(ProductManager.add_product)
+
+
+@export var id : String
+@export var item_name : String = "item"
+@export var stackable : bool = true        # Can it stack?
+@export var max_stack_size : int = 64      # How high?
+@export var base_value : int = 10
+@export var icon : Texture
+@export var visual : PackedScene
+@export var is_raw_material : bool = false
 
 func assemble_product_data():
-	var new_product = ProductData.new()
+	var item = selected_item.duplicate()
+	var new_design = Design.new()
 	
-	new_product.base_item = selected_item
+	item.is_raw_material = false
 	
-	new_product.trademark_name = %NameEdit.text
-	new_product.design_logo = selected_logo
-	new_product.design_pattern = selected_pattern
-	new_product.design_color = %ColorPicker.color
+	new_design.trademark_name = %NameEdit.text
+	new_design.design_logo = selected_logo
+	new_design.design_pattern = selected_pattern
+	new_design.design_color = %ColorPicker.color
 	
 	var profit = int(%Price.value)
-	new_product.aimed_profit = profit
-	new_product.marketing_strength = 1
+	new_design.aimed_profit = profit
+	new_design.marketing_strength = 1
 	
-	return new_product
+	
+	item.design = new_design
+	
+	return item
 
 
 func _on_color_picker_button_color_changed(color):
@@ -207,7 +219,7 @@ func _on_add_product_button_pressed():
 	window.queue_free()
 
 
-func assemble_recipe(product : ProductData):
+func assemble_recipe(product : ItemData):
 	var new_recipe = RecipeData.new()
 	var new_recipe_entry = RecipeEntry.new()
 	

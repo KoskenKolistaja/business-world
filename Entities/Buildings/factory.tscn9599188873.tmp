@@ -109,66 +109,6 @@ factory = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
 factory = NodePath("..")
 
-[node name="Worker6" parent="." unique_id=1387205187 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
-factory = NodePath("..")
-
-[node name="Worker7" parent="." unique_id=10812350 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
-factory = NodePath("..")
-
-[node name="Worker8" parent="." unique_id=332127034 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
-factory = NodePath("..")
-
-[node name="Worker9" parent="." unique_id=1137975050 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 5)
-factory = NodePath("..")
-
-[node name="Worker10" parent="." unique_id=100858160 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 6)
-factory = NodePath("..")
-
-[node name="Worker11" parent="." unique_id=164116881 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
-factory = NodePath("..")
-
-[node name="Worker12" parent="." unique_id=2021843626 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
-factory = NodePath("..")
-
-[node name="Worker13" parent="." unique_id=592540246 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 7)
-factory = NodePath("..")
-
-[node name="Worker14" parent="." unique_id=778151829 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 5)
-factory = NodePath("..")
-
-[node name="Worker15" parent="." unique_id=1752744360 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 6)
-factory = NodePath("..")
-
-[node name="Worker16" parent="." unique_id=391478448 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 4)
-factory = NodePath("..")
-
-[node name="Worker17" parent="." unique_id=749047668 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 5)
-factory = NodePath("..")
-
-[node name="Worker18" parent="." unique_id=338412298 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 7)
-factory = NodePath("..")
-
-[node name="Worker19" parent="." unique_id=1173421729 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 5)
-factory = NodePath("..")
-
-[node name="Worker20" parent="." unique_id=751590076 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 6)
-factory = NodePath("..")
-
 [node name="WorkStation5" parent="." unique_id=863606416 node_paths=PackedStringArray("factory") instance=ExtResource("6_57q65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
 factory = NodePath("..")
@@ -187,41 +127,5 @@ recipe = ExtResource("14_k4rbc")
 [node name="ProductStation" parent="." unique_id=40838474 node_paths=PackedStringArray("factory") instance=ExtResource("15_k4rbc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5)
 factory = NodePath("..")
-
-[node name="ProductStation2" parent="." unique_id=1465873191 node_paths=PackedStringArray("factory") instance=ExtResource("15_k4rbc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -5)
-factory = NodePath("..")
-
-[node name="WorkStation2" parent="." unique_id=416847517 node_paths=PackedStringArray("factory") instance=ExtResource("6_57q65")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -3.5)
-factory = NodePath("..")
-recipe = ExtResource("7_k4rbc")
-is_laptop = true
-
-[node name="WorkStation7" parent="." unique_id=1448162387 node_paths=PackedStringArray("factory") instance=ExtResource("6_57q65")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -7.5)
-factory = NodePath("..")
-recipe = ExtResource("7_k4rbc")
-is_laptop = true
-
-[node name="WorkStation9" parent="." unique_id=893108118 node_paths=PackedStringArray("factory") instance=ExtResource("6_57q65")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -0.5)
-factory = NodePath("..")
-recipe = ExtResource("8_57q65")
-
-[node name="WorkStation10" parent="." unique_id=1590707421 node_paths=PackedStringArray("factory") instance=ExtResource("6_57q65")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -5)
-factory = NodePath("..")
-recipe = ExtResource("12_bd6b4")
-
-[node name="WorkStation11" parent="." unique_id=916284089 node_paths=PackedStringArray("factory") instance=ExtResource("6_57q65")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -1)
-factory = NodePath("..")
-recipe = ExtResource("14_k4rbc")
-
-[node name="WorkStation12" parent="." unique_id=438901755 node_paths=PackedStringArray("factory") instance=ExtResource("6_57q65")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -3)
-factory = NodePath("..")
-recipe = ExtResource("14_k4rbc")
 
 [editable path="BaseBuilding"]
