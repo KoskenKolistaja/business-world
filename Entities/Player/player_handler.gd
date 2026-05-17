@@ -1,7 +1,28 @@
 extends Node3D
 
+var speed = 0.2
 
 
+func _physics_process(delta):
+	if Input.is_action_pressed("up"):
+		var vector = get_viewport().get_camera_3d().basis.z
+		vector.y = 0
+		vector = vector.normalized()
+		global_position += -vector * speed
+	if Input.is_action_pressed("left"):
+		global_position += -get_viewport().get_camera_3d().basis.x * speed
+	if Input.is_action_pressed("right"):
+		global_position += get_viewport().get_camera_3d().basis.x * speed
+	if Input.is_action_pressed("down"):
+		var vector = get_viewport().get_camera_3d().basis.z
+		vector.y = 0
+		vector = vector.normalized()
+		global_position += vector * speed
+	
+	if Input.is_action_just_pressed("wheel_up"):
+		global_position += -get_viewport().get_camera_3d().basis.z
+	if Input.is_action_just_pressed("wheel_down"):
+		global_position += get_viewport().get_camera_3d().basis.z
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():

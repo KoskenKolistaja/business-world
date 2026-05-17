@@ -36,3 +36,7 @@ size = Vector3(100, 1, 100)
 
 [node name="PlayerHandler" type="Node3D" parent="." unique_id=2104160144]
 script = ExtResource("2_47p0u")
+
+[node name="Camera3D" type="Camera3D" parent="PlayerHandler" unique_id=1424942349]
+transform = Transform3D(0.7677009, 0.44833285, -0.4578569, 0, 0.71449906, 0.6996365, 0.6408083, -0.5371116, 0.5485216, -3.953921, 6.0418606, 4.736875)
+current = true

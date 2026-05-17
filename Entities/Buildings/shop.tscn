@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://biuq5g5umaj47"]
+
+[ext_resource type="Script" uid="uid://la5g0xooxk8m" path="res://Entities/Buildings/shop.gd" id="1_2kjly"]
+[ext_resource type="PackedScene" uid="uid://f42pfe51yc7u" path="res://Entities/Placeables/Storage/storage.tscn" id="1_hsuyd"]
+[ext_resource type="Script" uid="uid://ckk42gukxjam7" path="res://Entities/Inventory/Utility/inventory_data.gd" id="2_2kjly"]
+[ext_resource type="Script" uid="uid://7jmllw54cvlh" path="res://Entities/Inventory/Utility/inventory_slot.gd" id="3_3grqp"]
+
+[sub_resource type="Resource" id="Resource_hcute"]
+resource_local_to_scene = true
+script = ExtResource("2_2kjly")
+metadata/_custom_type_script = "uid://ckk42gukxjam7"
+
+[node name="Shop" type="Node3D" unique_id=1008739553]
+script = ExtResource("1_2kjly")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1113837194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0)
+size = Vector3(12, 1, 12)
+
+[node name="Storage" parent="." unique_id=740370898 instance=ExtResource("1_hsuyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
+is_import = true
+inventory = SubResource("Resource_hcute")

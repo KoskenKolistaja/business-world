@@ -3,7 +3,7 @@ extends Node3D
 @export var factory : Node3D
 @export var work_station : Node3D
 
-var speed = 1.0 # Increased for delta
+var speed = 3.0 # Increased for delta
 var held_item = null
 var tasks : Array = []
 var current_job = null
@@ -21,8 +21,18 @@ func _ready():
 	%JobTimer.wait_time = randf_range(0.1,0.2)
 	await get_tree().create_timer(randf_range(0,1)).timeout
 	%JobTimer.start()
+	%LeftHand.start()
+	%RightHand.start()
 
 func _physics_process(delta):
+	
+	if held_item:
+		%LeftHand.influence = move_toward(%LeftHand.influence,1.0,0.1)
+		%RightHand.influence = move_toward(%RightHand.influence,1.0,0.1)
+	else:
+		%LeftHand.influence = move_toward(%LeftHand.influence,0.0,0.1)
+		%RightHand.influence = move_toward(%RightHand.influence,0.0,0.1)
+	
 	
 	if current_job:
 		var type_name = current_job.get_script().get_global_name()
