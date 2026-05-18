@@ -5,7 +5,15 @@ extends CanvasLayer
 
 
 
-
+func shop_shelf_ui_opened(shop_shelf):
+	for c in %EditWindows.get_children():
+		c.queue_free()
+	var window_instance = floating_window_scene.instantiate()
+	window_instance.size = Vector2i(400,500)
+	window_instance.title = "Shop Shelf"
+	%EditWindows.add_child(window_instance)
+	window_instance.position = get_viewport().get_mouse_position()
+	window_instance.add_shop_shelf_ui(shop_shelf)
 
 
 func product_station_ui_opened(station):

@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://ca7uehwrpyagc"]
+
+[ext_resource type="Script" uid="uid://cmmdw6nepdq3o" path="res://Entities/Placeables/ShopShelf/shop_shelf.gd" id="1_ntjsb"]
+[ext_resource type="Script" uid="uid://ckk42gukxjam7" path="res://Entities/Inventory/Utility/inventory_data.gd" id="2_8d3ar"]
+[ext_resource type="Script" uid="uid://7jmllw54cvlh" path="res://Entities/Inventory/Utility/inventory_slot.gd" id="3_a5c32"]
+[ext_resource type="PackedScene" uid="uid://dj0viyosgmaje" path="res://Entities/Utility/mouse_raycast_body.tscn" id="4_a5c32"]
+[ext_resource type="Texture2D" uid="uid://ditpdv5wnuh3x" path="res://Assets/Patterns/Tiles/tile_0002.png" id="4_avx2g"]
+
+[sub_resource type="Resource" id="Resource_avx2g"]
+resource_local_to_scene = true
+script = ExtResource("2_8d3ar")
+metadata/_custom_type_script = "uid://ckk42gukxjam7"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f11dj"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("4_avx2g")
+uv1_scale = Vector3(8, 8, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6rib"]
+albedo_color = Color(0.39166513, 0.29134908, 0.12577054, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nf5m1"]
+material = SubResource("StandardMaterial3D_p6rib")
+size = Vector3(0.8, 1, 0.8)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ntjsb"]
+data = PackedVector3Array(-0.39999998, 0.5, 0.39999998, 0.39999998, 0.5, 0.39999998, -0.39999998, -0.5, 0.39999998, 0.39999998, 0.5, 0.39999998, 0.39999998, -0.5, 0.39999998, -0.39999998, -0.5, 0.39999998, 0.39999998, 0.5, -0.39999998, -0.39999998, 0.5, -0.39999998, 0.39999998, -0.5, -0.39999998, -0.39999998, 0.5, -0.39999998, -0.39999998, -0.5, -0.39999998, 0.39999998, -0.5, -0.39999998, 0.39999998, 0.5, 0.39999998, 0.39999998, 0.5, -0.39999998, 0.39999998, -0.5, 0.39999998, 0.39999998, 0.5, -0.39999998, 0.39999998, -0.5, -0.39999998, 0.39999998, -0.5, 0.39999998, -0.39999998, 0.5, -0.39999998, -0.39999998, 0.5, 0.39999998, -0.39999998, -0.5, -0.39999998, -0.39999998, 0.5, 0.39999998, -0.39999998, -0.5, 0.39999998, -0.39999998, -0.5, -0.39999998, 0.39999998, 0.5, 0.39999998, -0.39999998, 0.5, 0.39999998, 0.39999998, 0.5, -0.39999998, -0.39999998, 0.5, 0.39999998, -0.39999998, 0.5, -0.39999998, 0.39999998, 0.5, -0.39999998, -0.39999998, -0.5, 0.39999998, 0.39999998, -0.5, 0.39999998, -0.39999998, -0.5, -0.39999998, 0.39999998, -0.5, 0.39999998, 0.39999998, -0.5, -0.39999998, -0.39999998, -0.5, -0.39999998)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54uie"]
+resource_local_to_scene = true
+transparency = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_8d3ar"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_54uie")
+size = Vector2(0.6, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5c32"]
+resource_local_to_scene = true
+albedo_color = Color(0.32010898, 0.65366685, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nf5m1"]
+resource_local_to_scene = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_ntjsb"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_nf5m1")
+size = Vector2(0.4, 0.4)
+
+[node name="ShopShelf" type="StaticBody3D" unique_id=1086568963]
+script = ExtResource("1_ntjsb")
+inventory = SubResource("Resource_avx2g")
+
+[node name="ShelfMesh" type="MeshInstance3D" parent="." unique_id=742094729]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material_override = SubResource("StandardMaterial3D_f11dj")
+mesh = SubResource("BoxMesh_nf5m1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=29453466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("ConcavePolygonShape3D_ntjsb")
+
+[node name="IconMesh" type="MeshInstance3D" parent="." unique_id=1891288090]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5342504, 0.4394995)
+mesh = SubResource("QuadMesh_8d3ar")
+
+[node name="BackMesh" type="MeshInstance3D" parent="IconMesh" unique_id=978650691]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.02328229)
+mesh = SubResource("QuadMesh_8d3ar")
+surface_material_override/0 = SubResource("StandardMaterial3D_a5c32")
+
+[node name="JobTimer" type="Timer" parent="." unique_id=513030329]
+wait_time = 0.2
+autostart = true
+
+[node name="ShelfItemMesh" type="MeshInstance3D" parent="." unique_id=669142166]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022987455, 1.3344162, -2.514571e-08)
+visible = false
+mesh = SubResource("QuadMesh_ntjsb")
+
+[node name="MouseRaycastBody" parent="." unique_id=1671237593 node_paths=PackedStringArray("parent") instance=ExtResource("4_a5c32")]
+parent = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MouseRaycastBody" unique_id=97198197]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("ConcavePolygonShape3D_ntjsb")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=468025930]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7226743, 0)

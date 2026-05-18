@@ -1,6 +1,7 @@
+#Worker.gd
 extends Node3D
 
-@export var factory : Node3D
+@export var building : Node3D
 @export var work_station : Node3D
 
 var speed = 3.0 # Increased for delta
@@ -27,6 +28,12 @@ func _ready():
 func _physics_process(delta):
 	
 	if held_item:
+		%Label3D2.text = held_item.get_item_name()
+	else:
+		%Label3D2.text = "none"
+	
+	
+	if held_item:
 		%LeftHand.influence = move_toward(%LeftHand.influence,1.0,0.1)
 		%RightHand.influence = move_toward(%RightHand.influence,1.0,0.1)
 	else:
@@ -44,7 +51,7 @@ func _physics_process(delta):
 	if tasks.is_empty():
 		if current_job != null:
 			# Only notify the factory ONCE when the job actually finishes
-			factory.job_done(current_job)
+			building.job_done(current_job)
 			current_job = null
 		return 
 
@@ -64,7 +71,7 @@ func process_task(task, delta):
 			state_machine.travel("work")
 			
 		"pickup_output": # Added missing case
-			held_item = task.target.pickup_crafted() 
+			held_item = task.target.pickup_output() 
 			update_hand_item()
 			tasks.remove_at(0)
 			state_machine.travel("work")
@@ -111,22 +118,19 @@ func handle_craft_task(task):
 func pickup_item(exp_task):
 	var target = tasks[0].target
 	var item_to_get = exp_task["item"]
-	
-	if target.has_amount_of_item(item_to_get):
-		target.take_item(item_to_get)
-		held_item = item_to_get
-	else:
-		held_item = null
-		return_job()
-	
+	held_item = target.take_item(item_to_get) #Take item returns null if inventory doesn't have it
 	update_hand_item()
 	tasks.remove_at(0) # Task complete, move to next
+	if held_item == null:
+		return_job()
 
 
 func deliver_item(exp_target):
 	if exp_target.has_method("store_item"):
-		exp_target.store_item(held_item)
-	held_item = null
+		held_item = exp_target.store_item(held_item)
+	else:
+		held_item = null 
+	
 	update_hand_item()
 	tasks.remove_at(0)
 
@@ -155,20 +159,20 @@ func generate_tasks(job):
 	tasks.clear()
 	if job == null: return
 	
-	if job is DeliverIngredientJob:
-		var import_storage = factory.get_import_storage()
+	if job is DeliverItemJob:
+		var import_storage = building.get_import_storage()
 		tasks.append({"type": "move", "target": import_storage})
-		tasks.append({"type": "pickup", "target": import_storage, "item": job.ingredient})
-		tasks.append({"type": "move", "target": job.workstation})
-		tasks.append({"type": "deliver", "target": job.workstation})
+		tasks.append({"type": "pickup", "target": import_storage, "item": job.item})
+		tasks.append({"type": "move", "target": job.target})
+		tasks.append({"type": "deliver", "target": job.target})
 		
 	elif job is CraftJob:
 		tasks.append({"type": "move", "target": job.workstation})
 		tasks.append({"type": "craft", "duration": job.craft_time})
 		
 	elif job is HaulOutputJob:
-		var export_storage = factory.get_export_storage()
-		var import_storage = factory.get_import_storage()
+		var export_storage = building.get_export_storage()
+		var import_storage = building.get_import_storage()
 		tasks.append({"type": "move", "target": job.workstation})
 		tasks.append({"type": "pickup_output", "target": job.workstation})
 		if not job.is_material:
@@ -177,13 +181,21 @@ func generate_tasks(job):
 		else:
 			tasks.append({"type": "move", "target": import_storage})
 			tasks.append({"type": "store_output", "target": import_storage})
+	elif job is ClearingJob:
+		var import_storage = building.get_import_storage()
+		tasks.append({"type": "move", "target": job.shelf})
+		tasks.append({"type": "pickup", "target": job.shelf, "item": job.item})
+		tasks.append({"type": "move", "target": import_storage})
+		tasks.append({"type": "deliver", "target": import_storage})
 	else:
 		var wander_position = self.global_position + Vector3(randf_range(-3,3),0,randf_range(-3,3))
 		tasks.append({"type": "wander","position": wander_position})
 
+# Item amount target
+
 func _on_job_timer_timeout():
 	if current_job == null and tasks.is_empty():
-		var new_job = factory.get_available_job()
+		var new_job = building.get_available_job()
 		if new_job:
 			current_job = new_job
 			generate_tasks(new_job)
@@ -192,6 +204,6 @@ func _on_job_timer_timeout():
 
 func return_job():
 	current_job.reserved = false
-	factory.return_job(current_job)
+	building.return_job(current_job)
 	current_job = null
 	tasks.clear()

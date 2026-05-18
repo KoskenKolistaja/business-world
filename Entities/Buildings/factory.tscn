@@ -83,25 +83,25 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0
 is_import = true
 inventory = SubResource("Resource_r2vye")
 
-[node name="Worker" parent="." unique_id=716754369 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
+[node name="Worker" parent="." unique_id=716754369 node_paths=PackedStringArray("building") instance=ExtResource("9_a7xfu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-factory = NodePath("..")
+building = NodePath("..")
 
-[node name="Worker2" parent="." unique_id=1774303518 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
+[node name="Worker2" parent="." unique_id=1774303518 node_paths=PackedStringArray("building") instance=ExtResource("9_a7xfu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-factory = NodePath("..")
+building = NodePath("..")
 
-[node name="Worker3" parent="." unique_id=1689906087 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
+[node name="Worker3" parent="." unique_id=1689906087 node_paths=PackedStringArray("building") instance=ExtResource("9_a7xfu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-factory = NodePath("..")
+building = NodePath("..")
 
-[node name="Worker4" parent="." unique_id=940057711 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
+[node name="Worker4" parent="." unique_id=940057711 node_paths=PackedStringArray("building") instance=ExtResource("9_a7xfu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
-factory = NodePath("..")
+building = NodePath("..")
 
-[node name="Worker5" parent="." unique_id=1518205399 node_paths=PackedStringArray("factory") instance=ExtResource("9_a7xfu")]
+[node name="Worker5" parent="." unique_id=1518205399 node_paths=PackedStringArray("building") instance=ExtResource("9_a7xfu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
-factory = NodePath("..")
+building = NodePath("..")
 
 [node name="WorkStation5" parent="." unique_id=863606416 node_paths=PackedStringArray("factory") instance=ExtResource("6_57q65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)

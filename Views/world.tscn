@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c2xujyh0kfw2s" path="res://Entities/Buildings/factory.tscn" id="1_tik66"]
 [ext_resource type="Script" uid="uid://b8iruo2udc74x" path="res://Entities/Player/player_handler.gd" id="2_47p0u"]
+[ext_resource type="PackedScene" uid="uid://biuq5g5umaj47" path="res://Entities/Buildings/shop.tscn" id="3_c7ngr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y7ngv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -40,3 +41,6 @@ script = ExtResource("2_47p0u")
 [node name="Camera3D" type="Camera3D" parent="PlayerHandler" unique_id=1424942349]
 transform = Transform3D(0.7677009, 0.44833285, -0.4578569, 0, 0.71449906, 0.6996365, 0.6408083, -0.5371116, 0.5485216, -3.953921, 6.0418606, 4.736875)
 current = true
+
+[node name="Shop" parent="." unique_id=1008739553 instance=ExtResource("3_c7ngr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -1)

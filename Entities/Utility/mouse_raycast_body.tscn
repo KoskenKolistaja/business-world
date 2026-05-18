@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://dj0viyosgmaje"]
 
+[ext_resource type="Script" uid="uid://buck568fc1qsb" path="res://Entities/Utility/mouse_raycast_body.gd" id="1_fu8b1"]
+
 [node name="MouseRaycastBody" type="StaticBody3D" unique_id=1671237593]
+script = ExtResource("1_fu8b1")

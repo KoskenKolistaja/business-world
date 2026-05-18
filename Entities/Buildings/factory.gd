@@ -19,8 +19,6 @@ func _physics_process(delta):
 			var type_name = j.get_script().get_global_name()
 			var status = " [RESERVED]" if j.reserved else " [FREE]"
 			job_names.append(type_name + status)
-		
-		#print("Active Factory Jobs: " + str(job_names))
 
 
 func add_job(job):
@@ -30,9 +28,9 @@ func add_job(job):
 
 
 func is_job_acceptable(job):
-	if job.get_script().get_global_name() == "DeliverIngredientJob":
+	if job.get_script().get_global_name() == "DeliverItemJob":
 		assert(import_storage, "IMPORT STORAGE NOT FOUND IN FACTORY")
-		if import_storage.has_amount_of_item(job.ingredient,job.amount):
+		if import_storage.has_amount_of_item(job.item,job.amount):
 			return true
 		else:
 			return false

@@ -1,16 +1,16 @@
-[gd_scene format=3 uid="uid://cvjr5unmc3w40"]
+[gd_scene format=3 uid="uid://dgoyxlxbv2386"]
 
-[ext_resource type="Script" uid="uid://80cf1636o23u" path="res://UI/product_selector.gd" id="1_vlg5l"]
+[ext_resource type="Script" uid="uid://80cf1636o23u" path="res://UI/product_selector.gd" id="1_1542k"]
 
-[node name="ProductStationUI" type="ColorRect" unique_id=689581945]
+[node name="ShopShelfUI" type="ColorRect" unique_id=1015116739]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_vlg5l")
+script = ExtResource("1_1542k")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1606978539]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=465963826]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -25,7 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 22
 
-[node name="WarningLabel" type="Label" parent="VBoxContainer" unique_id=843860774]
+[node name="WarningLabel" type="Label" parent="VBoxContainer" unique_id=1081370177]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -35,19 +35,19 @@ theme_override_constants/outline_size = 7
 text = "WARNING:
 You don't have any product designs!"
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=864876379]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=171817711]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
 text = "Change Product To:"
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer" unique_id=278798212]
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer" unique_id=1777370323]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 expand_icon = true
 
-[node name="AssignButton" type="Button" parent="VBoxContainer" unique_id=724799389]
+[node name="AssignButton" type="Button" parent="VBoxContainer" unique_id=161328532]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 size_flags_horizontal = 4

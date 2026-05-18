@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dg4k3e2cb7snb" path="res://UI/Inventory/inventory_ui_node.tscn" id="2_7xtv5"]
 [ext_resource type="PackedScene" uid="uid://cdlsygg48x0q8" path="res://UI/ProductDesigner/product_designer.tscn" id="3_yxt8l"]
 [ext_resource type="PackedScene" uid="uid://cvjr5unmc3w40" path="res://UI/ProductStation/product_station_ui.tscn" id="4_riyhw"]
+[ext_resource type="PackedScene" uid="uid://dgoyxlxbv2386" path="res://UI/ShopShelf/shop_shelf_ui.tscn" id="5_ikhvm"]
 
 [node name="FloatingWindow" type="Window" unique_id=969948661]
 oversampling_override = 1.0
@@ -14,6 +15,7 @@ script = ExtResource("1_88235")
 inventory_ui = ExtResource("2_7xtv5")
 product_designer = ExtResource("3_yxt8l")
 product_station_ui = ExtResource("4_riyhw")
+shop_shelf_ui = ExtResource("5_ikhvm")
 
 [node name="ContentContainer" type="Control" parent="." unique_id=1759136766]
 unique_name_in_owner = true

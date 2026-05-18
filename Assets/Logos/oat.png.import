@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ditpdv5wnuh3x"
-path.s3tc="res://.godot/imported/tile_0002.png-bf967a47cfa73d508a46549ed3a60aa5.s3tc.ctex"
+uid="uid://eqd8y56gj161"
+path="res://.godot/imported/oat.png-f3642818c742fa13fe8f32b6d5d5fa22.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Patterns/Tiles/tile_0002.png"
-dest_files=["res://.godot/imported/tile_0002.png-bf967a47cfa73d508a46549ed3a60aa5.s3tc.ctex"]
+source_file="res://Assets/Logos/oat.png"
+dest_files=["res://.godot/imported/oat.png-f3642818c742fa13fe8f32b6d5d5fa22.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -24,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -38,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

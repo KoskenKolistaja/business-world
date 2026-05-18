@@ -1,7 +1,6 @@
 extends Node3D
 
 
-@export var export_storage : Node3D
 @export var import_storage : Node3D
 
 var jobs = []
@@ -20,19 +19,19 @@ func _physics_process(delta):
 			var status = " [RESERVED]" if j.reserved else " [FREE]"
 			job_names.append(type_name + status)
 		
-		#print("Active Factory Jobs: " + str(job_names))
 
 
 func add_job(job):
+	
 	if is_job_acceptable(job):
 		jobs.append(job)
 
 
 
 func is_job_acceptable(job):
-	if job.get_script().get_global_name() == "DeliverIngredientJob":
-		assert(import_storage, "IMPORT STORAGE NOT FOUND IN FACTORY")
-		if import_storage.has_amount_of_item(job.ingredient,job.amount):
+	if job.get_script().get_global_name() == "DeliverItemJob":
+		assert(import_storage, "IMPORT STORAGE NOT FOUND IN BUILDING")
+		if import_storage.has_amount_of_item(job.item,job.amount):
 			return true
 		else:
 			return false
@@ -60,8 +59,7 @@ func job_done(done_job):
 func job_cancelled(cancelled_job):
 	jobs.erase(cancelled_job)
 
-func get_export_storage():
-	return export_storage
+
 
 func get_import_storage():
 	return import_storage

@@ -3,6 +3,7 @@ extends StaticBody3D
 
 @export var is_export : bool
 @export var is_import : bool
+@export var infinite : bool
 
 @export var inventory : InventoryData
 
@@ -21,15 +22,21 @@ func _ready():
 
 
 func has_amount_of_item(exp_item : ItemData,amount : int = 1):
+	if infinite:
+		return true
 	if inventory.has_amount_of_item(exp_item,amount):
 		return true
 	else:
 		return false
 
 
-func take_item(took_item):
-	inventory.erase_item(took_item)
-	return took_item
+func take_item(item_to_be_taken,amount : int = 1):
+	if has_amount_of_item(item_to_be_taken,amount):
+		inventory.erase_item(item_to_be_taken)
+		return item_to_be_taken
+	else:
+		return null
+
 
 func store_item(item_to_store):
 	inventory.add_item(item_to_store)

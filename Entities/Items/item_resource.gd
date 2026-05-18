@@ -20,3 +20,9 @@ func get_logo():
 		return design.design_logo
 	else:
 		return icon
+
+func get_item_name():
+	if design:
+		return design.trademark_name
+	else:
+		return item_name

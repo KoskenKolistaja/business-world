@@ -122,7 +122,7 @@ func craft():
 		update_inventory_text()
 		check_state()
 
-func pickup_crafted():
+func pickup_output():
 	var item = product_slot.item
 	product_slot.item = null
 	product_slot.amount = 0
@@ -172,12 +172,12 @@ func get_missing_ingredients():
 
 func create_delivery_job(item):
 	for job in factory.jobs:
-		if job is DeliverIngredientJob and job.workstation == self:
-			if job.ingredient == item:
+		if job is DeliverItemJob and job.target == self:
+			if job.item == item:
 				return
-	var job = DeliverIngredientJob.new()
-	job.workstation = self
-	job.ingredient = item
+	var job = DeliverItemJob.new()
+	job.target = self
+	job.item = item
 	job.amount = 1
 	factory.add_job(job)
 

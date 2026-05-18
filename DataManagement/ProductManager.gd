@@ -17,7 +17,6 @@ func add_product(new_product : ItemData , new_recipe : RecipeData):
 		"data" : new_product,
 		"recipe" : new_recipe,
 	}
-	print(new_dic)
 	products.append(new_dic)
 
 

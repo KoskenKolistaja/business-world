@@ -73,7 +73,7 @@ func update_inventory_text():
 	else:
 		%CraftSlotLabel.text = "<none>"
 
-func pickup_crafted():
+func pickup_output():
 	var item = craft_slot.item
 	craft_slot.item = null
 	craft_slot.amount = 0
@@ -189,13 +189,13 @@ func check_state():
 
 func create_delivery_job(item):
 	for job in factory.jobs:
-		if job is DeliverIngredientJob and job.workstation == self:
-			if job.ingredient == item:
+		if job is DeliverItemJob and job.target == self:
+			if job.item == item:
 				return
 
-	var job = DeliverIngredientJob.new()
-	job.workstation = self
-	job.ingredient = item
+	var job = DeliverItemJob.new()
+	job.target = self
+	job.item = item
 	job.amount = 1
 	factory.add_job(job)
 

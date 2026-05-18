@@ -17,7 +17,6 @@ func initiate_products():
 	if owned_products.size() < 1:
 		%WarningLabel.show()
 	
-	print(owned_products)
 	
 	for p in owned_products:
 		var data = p["data"]
@@ -33,5 +32,4 @@ func assign():
 	if current_id < 0:
 		return
 	var product_dictionary = ProductManager.get_product_by_id(current_id)
-	print(product_dictionary)
 	product_changed.emit(product_dictionary)

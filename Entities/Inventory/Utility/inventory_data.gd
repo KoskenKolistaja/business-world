@@ -23,7 +23,6 @@ func add_item(item_data: ItemData, amount: int = 1) -> int:
 			if amount <= 0:
 				inventory_updated.emit(self)
 				return 0
-
 	# 2. Try to find an empty slot for leftovers
 	for slot in slots:
 		if not slot.item:
@@ -38,11 +37,43 @@ func add_item(item_data: ItemData, amount: int = 1) -> int:
 	inventory_updated.emit(self)
 	return amount # Returns remaining items if inventory is full
 
+
+func room_for_item(item_data: ItemData, amount: int = 1) -> int:
+	var remaining_amount = amount
+	# 1. Simulate stacking with existing items
+	for slot in slots:
+		if slot.item == item_data and slot.amount < item_data.max_stack_size:
+			var can_add = item_data.max_stack_size - slot.amount
+			var to_add = min(remaining_amount, can_add)
+			remaining_amount -= to_add
+			
+			if remaining_amount <= 0:
+				return 0
+	# 2. Simulate placing leftovers into empty slots
+	for slot in slots:
+		if not slot.item:
+			var to_add = min(remaining_amount, item_data.max_stack_size)
+			remaining_amount -= to_add
+			
+			if remaining_amount <= 0:
+				return 0
+				
+	return remaining_amount # Returns what couldn't fit without changing inventory state
+
+
+
+
 ## Erases a specific amount of an item, potentially from multiple slots
 func erase_item(item_data: ItemData, amount_to_erase: int = 1) -> bool:
+	
+	if slots[0].item:
+		print("INVENTORY SLOT 0 ITEM: " + str(slots[0].item))
+	
+	print("PARAMETER NAME: " + str(item_data))
+	
 	# 1. Verification Phase: Do we have enough before we start deleting?
 	if not has_amount_of_item(item_data, amount_to_erase):
-		print("Transaction Failed: Not enough ", item_data.item_name)
+		print("Transaction Failed: Not enough ", item_data.design.trademark_name)
 		return false
 	
 	# 2. Execution Phase: Start subtracting

@@ -68,6 +68,18 @@ var patterns : Array[Texture] = [
 ]
 
 var logos = [
+	preload("res://Assets/Logos/abstract-005.png"),
+	preload("res://Assets/Logos/abstract-104.png"),
+	preload("res://Assets/Logos/air-force.png"),
+	preload("res://Assets/Logos/clover.png"),
+	preload("res://Assets/Logos/cracked-helm.png"),
+	preload("res://Assets/Logos/gluttony.png"),
+	preload("res://Assets/Logos/hedgehog.png"),
+	preload("res://Assets/Logos/oat.png"),
+	preload("res://Assets/Logos/ophanim.png"),
+	preload("res://Assets/Logos/peace-dove.png"),
+	preload("res://Assets/Logos/skull-crossed-bones.png"),
+	preload("res://Assets/Logos/thwomp.png"),
 	preload("res://Assets/Logos/artificial-hive.png"),
 	preload("res://Assets/Logos/automatic-sas.png"),
 	preload("res://Assets/Logos/chameleon-glyph.png"),

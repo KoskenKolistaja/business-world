@@ -4,20 +4,90 @@
 [ext_resource type="PackedScene" uid="uid://f42pfe51yc7u" path="res://Entities/Placeables/Storage/storage.tscn" id="1_hsuyd"]
 [ext_resource type="Script" uid="uid://ckk42gukxjam7" path="res://Entities/Inventory/Utility/inventory_data.gd" id="2_2kjly"]
 [ext_resource type="Script" uid="uid://7jmllw54cvlh" path="res://Entities/Inventory/Utility/inventory_slot.gd" id="3_3grqp"]
+[ext_resource type="PackedScene" uid="uid://krs5wxq2erbm" path="res://Entities/Npcs/Worker/worker.tscn" id="5_3grqp"]
+[ext_resource type="PackedScene" uid="uid://ca7uehwrpyagc" path="res://Entities/Placeables/ShopShelf/shop_shelf.tscn" id="6_hcute"]
+
+[sub_resource type="Gradient" id="Gradient_3grqp"]
+colors = PackedColorArray(0.7792914, 0.7792914, 0.7792913, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hcute"]
+frequency = 0.0042
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_85w1i"]
+noise = SubResource("FastNoiseLite_hcute")
+color_ramp = SubResource("Gradient_3grqp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8r3l"]
+albedo_texture = SubResource("NoiseTexture2D_85w1i")
 
 [sub_resource type="Resource" id="Resource_hcute"]
 resource_local_to_scene = true
 script = ExtResource("2_2kjly")
 metadata/_custom_type_script = "uid://ckk42gukxjam7"
 
-[node name="Shop" type="Node3D" unique_id=1008739553]
+[sub_resource type="Resource" id="Resource_85w1i"]
+resource_local_to_scene = true
+script = ExtResource("2_2kjly")
+metadata/_custom_type_script = "uid://ckk42gukxjam7"
+
+[sub_resource type="Resource" id="Resource_i8r3l"]
+resource_local_to_scene = true
+script = ExtResource("2_2kjly")
+metadata/_custom_type_script = "uid://ckk42gukxjam7"
+
+[sub_resource type="Resource" id="Resource_qu1yl"]
+resource_local_to_scene = true
+script = ExtResource("2_2kjly")
+metadata/_custom_type_script = "uid://ckk42gukxjam7"
+
+[sub_resource type="Resource" id="Resource_ocoly"]
+resource_local_to_scene = true
+script = ExtResource("2_2kjly")
+metadata/_custom_type_script = "uid://ckk42gukxjam7"
+
+[sub_resource type="Resource" id="Resource_3jsvj"]
+resource_local_to_scene = true
+script = ExtResource("2_2kjly")
+metadata/_custom_type_script = "uid://ckk42gukxjam7"
+
+[node name="Shop" type="Node3D" unique_id=1008739553 node_paths=PackedStringArray("import_storage")]
 script = ExtResource("1_2kjly")
+import_storage = NodePath("Storage")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1113837194]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0)
 size = Vector3(12, 1, 12)
+material = SubResource("StandardMaterial3D_i8r3l")
 
 [node name="Storage" parent="." unique_id=740370898 instance=ExtResource("1_hsuyd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5, 0, 0)
 is_import = true
 inventory = SubResource("Resource_hcute")
+
+[node name="Worker" parent="." unique_id=716754369 node_paths=PackedStringArray("building") instance=ExtResource("5_3grqp")]
+building = NodePath("..")
+
+[node name="ShopShelf" parent="." unique_id=1086568963 node_paths=PackedStringArray("building") instance=ExtResource("6_hcute")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5)
+building = NodePath("..")
+inventory = SubResource("Resource_85w1i")
+
+[node name="ShopShelf2" parent="." unique_id=79536389 node_paths=PackedStringArray("building") instance=ExtResource("6_hcute")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
+building = NodePath("..")
+inventory = SubResource("Resource_i8r3l")
+
+[node name="ShopShelf3" parent="." unique_id=1860670328 node_paths=PackedStringArray("building") instance=ExtResource("6_hcute")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+building = NodePath("..")
+inventory = SubResource("Resource_qu1yl")
+
+[node name="ShopShelf4" parent="." unique_id=973929582 node_paths=PackedStringArray("building") instance=ExtResource("6_hcute")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
+building = NodePath("..")
+inventory = SubResource("Resource_ocoly")
+
+[node name="ShopShelf5" parent="." unique_id=241568585 node_paths=PackedStringArray("building") instance=ExtResource("6_hcute")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5)
+building = NodePath("..")
+inventory = SubResource("Resource_3jsvj")
