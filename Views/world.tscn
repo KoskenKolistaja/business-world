@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://qqnhsmocwe1m"]
 
-[ext_resource type="PackedScene" uid="uid://c2xujyh0kfw2s" path="res://Entities/Buildings/factory.tscn" id="1_tik66"]
+[ext_resource type="PackedScene" uid="uid://c2xujyh0kfw2s" path="res://Entities/Buildings/Factory/factory.tscn" id="1_tik66"]
 [ext_resource type="Script" uid="uid://b8iruo2udc74x" path="res://Entities/Player/player_handler.gd" id="2_47p0u"]
-[ext_resource type="PackedScene" uid="uid://biuq5g5umaj47" path="res://Entities/Buildings/shop.tscn" id="3_c7ngr"]
+[ext_resource type="PackedScene" uid="uid://biuq5g5umaj47" path="res://Entities/Buildings/Shop/shop.tscn" id="3_c7ngr"]
+[ext_resource type="Script" uid="uid://b2ls6j0bb8vgg" path="res://Utility/customer_manager.gd" id="4_an8ox"]
+[ext_resource type="PackedScene" uid="uid://ua0divcm1iso" path="res://Entities/Buildings/Flat/flat.tscn" id="5_q6pcp"]
+[ext_resource type="PackedScene" uid="uid://krs5wxq2erbm" path="res://Entities/Npcs/Worker/worker.tscn" id="5_rqcao"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y7ngv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -44,3 +47,13 @@ current = true
 
 [node name="Shop" parent="." unique_id=1008739553 instance=ExtResource("3_c7ngr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -1)
+
+[node name="CustomerManager" type="Node" parent="." unique_id=1270044351 node_paths=PackedStringArray("customer_container")]
+script = ExtResource("4_an8ox")
+customer_scene = ExtResource("5_rqcao")
+customer_container = NodePath("../CustomerContainer")
+
+[node name="Flat" parent="." unique_id=1883005245 instance=ExtResource("5_q6pcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 8)
+
+[node name="CustomerContainer" type="Node3D" parent="." unique_id=478893473]

@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dx20olo0perkf"]
+
+[ext_resource type="Script" uid="uid://dsfc4i503g457" path="res://Entities/Placeables/ShopRegister/shop_register.gd" id="1_dr11r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6rib"]
+albedo_color = Color(0.39166513, 0.29134908, 0.12577054, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q8tc1"]
+material = SubResource("StandardMaterial3D_p6rib")
+size = Vector3(0.8, 1, 0.8)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dr11r"]
+data = PackedVector3Array(-0.39999998, 0.5, 0.39999998, 0.39999998, 0.5, 0.39999998, -0.39999998, -0.5, 0.39999998, 0.39999998, 0.5, 0.39999998, 0.39999998, -0.5, 0.39999998, -0.39999998, -0.5, 0.39999998, 0.39999998, 0.5, -0.39999998, -0.39999998, 0.5, -0.39999998, 0.39999998, -0.5, -0.39999998, -0.39999998, 0.5, -0.39999998, -0.39999998, -0.5, -0.39999998, 0.39999998, -0.5, -0.39999998, 0.39999998, 0.5, 0.39999998, 0.39999998, 0.5, -0.39999998, 0.39999998, -0.5, 0.39999998, 0.39999998, 0.5, -0.39999998, 0.39999998, -0.5, -0.39999998, 0.39999998, -0.5, 0.39999998, -0.39999998, 0.5, -0.39999998, -0.39999998, 0.5, 0.39999998, -0.39999998, -0.5, -0.39999998, -0.39999998, 0.5, 0.39999998, -0.39999998, -0.5, 0.39999998, -0.39999998, -0.5, -0.39999998, 0.39999998, 0.5, 0.39999998, -0.39999998, 0.5, 0.39999998, 0.39999998, 0.5, -0.39999998, -0.39999998, 0.5, 0.39999998, -0.39999998, 0.5, -0.39999998, 0.39999998, 0.5, -0.39999998, -0.39999998, -0.5, 0.39999998, 0.39999998, -0.5, 0.39999998, -0.39999998, -0.5, -0.39999998, 0.39999998, -0.5, 0.39999998, 0.39999998, -0.5, -0.39999998, -0.39999998, -0.5, -0.39999998)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqxr7"]
+resource_local_to_scene = true
+transparency = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_dxifk"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_vqxr7")
+size = Vector2(0.6, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8lft"]
+resource_local_to_scene = true
+albedo_color = Color(0.32010898, 0.65366685, 1, 1)
+
+[node name="ShopRegister" type="StaticBody3D" unique_id=549093958]
+script = ExtResource("1_dr11r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=827089653]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_q8tc1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2019988607]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("ConcavePolygonShape3D_dr11r")
+
+[node name="InventoryLabel" type="Label3D" parent="." unique_id=1545720148]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4572034, 0)
+billboard = 1
+text = "JASDFJDFJ"
+
+[node name="CraftSlotLabel" type="Label3D" parent="." unique_id=1014559352]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.757118, 0)
+billboard = 1
+text = "<none>"
+
+[node name="IconMesh" type="MeshInstance3D" parent="." unique_id=1635377268]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5342504, 0.4394995)
+mesh = SubResource("QuadMesh_dxifk")
+
+[node name="BackMesh" type="MeshInstance3D" parent="IconMesh" unique_id=1674517181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.02328229)
+mesh = SubResource("QuadMesh_dxifk")
+surface_material_override/0 = SubResource("StandardMaterial3D_o8lft")

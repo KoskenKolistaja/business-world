@@ -205,6 +205,7 @@ func create_craft_job():
 			#print("Returned at craft because of a duplicate")
 			return
 	var job = CraftJob.new()
+	job.priority = 2
 	job.workstation = self
 	job.craft_time = recipe.base_craft_time
 	factory.add_job(job)
@@ -217,6 +218,7 @@ func create_output_job():
 			#print("Returned at output because of a duplicate")
 			return
 	var job = HaulOutputJob.new()
+	job.priority = 2
 	job.workstation = self
 	job.output_item = craft_slot.item
 	job.is_material = craft_slot.item.is_raw_material

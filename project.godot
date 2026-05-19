@@ -19,6 +19,11 @@ config/icon="uid://c4ys032jpt5p1"
 
 UiManager="*uid://bsad03osi1r8e"
 ProductManager="*uid://dhfm8e63kh8wc"
+DebugWindow="*uid://dw12yxc15hl6k"
+
+[display]
+
+window/subwindows/embed_subwindows=false
 
 [gui]
 

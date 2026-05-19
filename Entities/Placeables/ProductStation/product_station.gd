@@ -176,6 +176,7 @@ func create_delivery_job(item):
 			if job.item == item:
 				return
 	var job = DeliverItemJob.new()
+	job.priority = 3
 	job.target = self
 	job.item = item
 	job.amount = 1
@@ -186,6 +187,7 @@ func create_craft_job():
 		if job is CraftJob and job.workstation == self:
 			return
 	var job = CraftJob.new()
+	job.priority = 4
 	job.workstation = self
 	job.craft_time = recipe.base_craft_time
 	factory.add_job(job)
@@ -197,6 +199,7 @@ func create_output_job():
 		if job is HaulOutputJob and job.workstation == self:
 			return
 	var job = HaulOutputJob.new()
+	job.priority = 5
 	job.workstation = self
 	job.output_item = product_slot.item
 	job.is_material = product_slot.item.is_raw_material

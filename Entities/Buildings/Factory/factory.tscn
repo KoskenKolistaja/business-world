@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c2xujyh0kfw2s"]
 
-[ext_resource type="Script" uid="uid://dn7veftsn4824" path="res://Entities/Buildings/factory.gd" id="1_a1ll8"]
+[ext_resource type="Script" uid="uid://dn7veftsn4824" path="res://Entities/Buildings/Factory/factory.gd" id="1_a1ll8"]
 [ext_resource type="PackedScene" uid="uid://binxttu4w4c87" path="res://Assets/Models/BaseBuilding.glb" id="2_nk71g"]
 [ext_resource type="Texture2D" uid="uid://cfyygdxcyppv3" path="res://icon.svg" id="3_48c4f"]
 [ext_resource type="PackedScene" uid="uid://k1y5khijrmpl" path="res://Entities/Utility/grid_manager.tscn" id="4_bd6b4"]

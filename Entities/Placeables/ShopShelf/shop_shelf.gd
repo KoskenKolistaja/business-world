@@ -29,6 +29,14 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_up"):
 		print(inventory.slots[0].item)
 
+
+func has_shelf_item():
+	for slot in inventory.slots:
+		if slot.item == shelf_item and slot.amount > 0:
+			return true
+	return false
+
+
 func clicked():
 	UiManager.shop_shelf_ui_opened(self)
 

@@ -4,6 +4,10 @@ extends Node3D
 @export var building : Node3D
 @export var work_station : Node3D
 
+var home
+
+var sell_time = 3.0
+
 var speed = 3.0 # Increased for delta
 var held_item = null
 var tasks : Array = []
@@ -63,13 +67,15 @@ func _physics_process(delta):
 func process_task(task, delta):
 	match task.type:
 		"move":
-			move_to(task.target.global_position, delta)
+			move_to(task["target_position"], delta)
 			state_machine.travel("run")
 			
 		"pickup":
 			pickup_item(task)
 			state_machine.travel("work")
-			
+		"pickup_product":
+			pickup_product(task)
+			state_machine.travel("work")
 		"pickup_output": # Added missing case
 			held_item = task.target.pickup_output() 
 			update_hand_item()
@@ -84,6 +90,14 @@ func process_task(task, delta):
 		"store_output":
 			store_output(task.target)
 			state_machine.travel("work")
+		"buy_item":
+			buy_item(task)
+			state_machine.travel("idle")
+		"sell_item":
+			sell_item(task)
+			state_machine.travel("work")
+		"return":
+			queue_free()
 		"wander":
 			move_to(tasks[0]["position"],delta)
 			state_machine.travel("run")
@@ -115,6 +129,9 @@ func handle_craft_task(task):
 	tasks.remove_at(0)
 	is_processing = false
 
+func get_sell_time():
+	return sell_time
+
 func pickup_item(exp_task):
 	var target = tasks[0].target
 	var item_to_get = exp_task["item"]
@@ -124,6 +141,36 @@ func pickup_item(exp_task):
 	if held_item == null:
 		return_job()
 
+func pickup_product(exp_task):
+	var target = tasks[0].target
+	var item_to_get = exp_task["item"]
+	held_item = target.take_item(item_to_get) #Take item returns null if inventory doesn't have it
+	update_hand_item()
+	tasks.remove_at(0) # Task complete, move to next
+	if held_item == null:
+		tasks.remove_at(0)
+		tasks.remove_at(0)
+
+func buy_item(exp_task):
+	is_processing = true
+	# Pass 'self' so the register knows who is asking
+	exp_task["target"].request_buy_item(self) 
+	
+	# Wait for the register to emit, but we need to verify it's us
+	var checked_customer = await exp_task["target"].register_checked
+	while checked_customer != self:
+		checked_customer = await exp_task["target"].register_checked
+		
+	tasks.remove_at(0)
+	is_processing = false
+
+func sell_item(exp_task):
+	is_processing = true
+	await get_tree().create_timer(get_sell_time()).timeout
+	exp_task["target"].check_register()
+	tasks.remove_at(0)
+	is_processing = false
+	state_machine.travel("idle")
 
 func deliver_item(exp_target):
 	if exp_target.has_method("store_item"):
@@ -161,32 +208,73 @@ func generate_tasks(job):
 	
 	if job is DeliverItemJob:
 		var import_storage = building.get_import_storage()
-		tasks.append({"type": "move", "target": import_storage})
+		tasks.append({"type": "move", "target_position": import_storage.global_position})
 		tasks.append({"type": "pickup", "target": import_storage, "item": job.item})
-		tasks.append({"type": "move", "target": job.target})
+		tasks.append({"type": "move", "target_position": job.target.global_position})
 		tasks.append({"type": "deliver", "target": job.target})
 		
 	elif job is CraftJob:
-		tasks.append({"type": "move", "target": job.workstation})
+		tasks.append({"type": "move", "target_position": job.workstation.global_position})
 		tasks.append({"type": "craft", "duration": job.craft_time})
 		
 	elif job is HaulOutputJob:
 		var export_storage = building.get_export_storage()
 		var import_storage = building.get_import_storage()
-		tasks.append({"type": "move", "target": job.workstation})
+		tasks.append({"type": "move", "target_position": job.workstation.global_position})
 		tasks.append({"type": "pickup_output", "target": job.workstation})
 		if not job.is_material:
-			tasks.append({"type": "move", "target": export_storage})
+			tasks.append({"type": "move", "target_position": export_storage.global_position})
 			tasks.append({"type": "store_output", "target": export_storage})
 		else:
-			tasks.append({"type": "move", "target": import_storage})
+			tasks.append({"type": "move", "target_position": import_storage.global_position})
 			tasks.append({"type": "store_output", "target": import_storage})
 	elif job is ClearingJob:
 		var import_storage = building.get_import_storage()
-		tasks.append({"type": "move", "target": job.shelf})
+		tasks.append({"type": "move", "target_position": job.shelf.global_position})
 		tasks.append({"type": "pickup", "target": job.shelf, "item": job.item})
-		tasks.append({"type": "move", "target": import_storage})
+		tasks.append({"type": "move", "target_position": import_storage.global_position})
 		tasks.append({"type": "deliver", "target": import_storage})
+	elif job is BuyJob:
+		var door_position = job.shop.get_door_position()
+		var shop_register = job.shop.get_shop_register()
+		var shelf_with_item = job.shop.get_shelf_with_item(job.item)
+		var home_position = home.get_door_position()
+		
+		var requirements_met = true
+
+		if not door_position:
+			DebugWindow.warn("\t- Missing: Door Position")
+			requirements_met = false
+
+		if not shop_register:
+			DebugWindow.warn("\t- Missing: Shop Register")
+			requirements_met = false
+
+		if not shelf_with_item:
+			DebugWindow.warn("\t- Missing: Shelf With Item")
+			requirements_met = false
+
+		if not home_position:
+			DebugWindow.warn("\t- Missing: Home Position")
+			requirements_met = false
+
+		if not requirements_met:
+			DebugWindow.error("BUY JOB REQUIREMENTS NOT MET")
+			tasks.append({"type" : "return"})
+			return
+		
+		tasks.append({"type": "move", "target_position": door_position})
+		tasks.append({"type": "move", "target_position": shelf_with_item.global_position})
+		tasks.append({"type": "pickup_product", "target": shelf_with_item, "item": job.item})
+		tasks.append({"type": "move", "target_position": shop_register.global_position})
+		tasks.append({"type": "buy_item", "target": shop_register})
+		tasks.append({"type": "move", "target_position": door_position})
+		tasks.append({"type": "move", "target_position": home_position})
+		tasks.append({"type": "return"})
+	elif job is SellJob:
+		var register_position = job.register.global_position
+		tasks.append({"type": "move", "target_position": register_position})
+		tasks.append({"type": "sell_item", "target": job.register})
 	else:
 		var wander_position = self.global_position + Vector3(randf_range(-3,3),0,randf_range(-3,3))
 		tasks.append({"type": "wander","position": wander_position})
@@ -194,6 +282,8 @@ func generate_tasks(job):
 # Item amount target
 
 func _on_job_timer_timeout():
+	if not building:
+		return
 	if current_job == null and tasks.is_empty():
 		var new_job = building.get_available_job()
 		if new_job:
@@ -204,6 +294,7 @@ func _on_job_timer_timeout():
 
 func return_job():
 	current_job.reserved = false
-	building.return_job(current_job)
+	if building:
+		building.return_job(current_job)
 	current_job = null
 	tasks.clear()
