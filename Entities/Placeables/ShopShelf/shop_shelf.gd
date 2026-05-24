@@ -142,6 +142,7 @@ func create_delivery_job(item):
 			if job.item == item:
 				return
 	var job = DeliverItemJob.new()
+	job.priority = 1
 	job.target = self
 	job.item = item
 	job.amount = 1
@@ -154,6 +155,7 @@ func create_clearing_job(item):
 			if job.item == item:
 				return
 	var job = ClearingJob.new()
+	job.priority = 1
 	job.shelf = self
 	job.item = item
 	job.amount = 1
