@@ -24,3 +24,17 @@ func check_register():
 		waiting_customers.remove_at(0)
 		# Emit the specific customer who just got served
 		register_checked.emit(current_customer)
+
+func get_seller_rotation_target():
+	#return self.global_position + Vector3.BACK
+	return (%BuyerPosition.global_position - %SellerPosition.global_position).normalized()
+
+func get_buyer_rotation_target():
+	#return self.global_position + Vector3.FORWARD
+	return (%SellerPosition.global_position - %BuyerPosition.global_position).normalized()
+
+func get_seller_position():
+	return %SellerPosition.global_position
+
+func get_buyer_position():
+	return %BuyerPosition.global_position

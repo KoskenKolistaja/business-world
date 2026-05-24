@@ -57,3 +57,11 @@ mesh = SubResource("QuadMesh_dxifk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.02328229)
 mesh = SubResource("QuadMesh_dxifk")
 surface_material_override/0 = SubResource("StandardMaterial3D_o8lft")
+
+[node name="SellerPosition" type="Node3D" parent="." unique_id=2000850103]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="BuyerPosition" type="Node3D" parent="." unique_id=1730534174]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)

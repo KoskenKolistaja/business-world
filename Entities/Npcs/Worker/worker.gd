@@ -8,6 +8,9 @@ var home
 
 var sell_time = 3.0
 
+var run_speed = 3.0
+var walk_speed = 1.5
+
 var speed = 3.0 # Increased for delta
 var held_item = null
 var tasks : Array = []
@@ -67,9 +70,10 @@ func _physics_process(delta):
 func process_task(task, delta):
 	match task.type:
 		"move":
-			move_to(task["target_position"], delta)
+			move_to(task["target_position"], delta,task["accuracy"],task["running"])
 			state_machine.travel("run")
-			
+		"rotate":
+			rotate_towards(task["target_position"],delta)
 		"pickup":
 			pickup_item(task)
 			state_machine.travel("work")
@@ -105,7 +109,7 @@ func process_task(task, delta):
 	if tasks.is_empty():
 		state_machine.travel("idle")
 
-func move_to(target_position, delta):
+func move_to(target_position, delta , accuracy : float = 1.0, running = false):
 	var vector = target_position - self.global_position
 	var direction = vector.normalized()
 	direction.y = 0
@@ -115,10 +119,42 @@ func move_to(target_position, delta):
 		
 		# 2. Smoothly rotate our current basis toward that target basis
 		basis = basis.slerp(target_basis, rotation_speed * delta)
-	global_position += direction * speed * delta
 	
-	if vector.length() < 1.0:
+	if running:
+		global_position += direction * run_speed * delta
+	else:
+		global_position += direction * walk_speed * delta
+	
+	if vector.length() < accuracy:
 		tasks.remove_at(0)
+
+func rotate_towards(local_direction : Vector3, delta : float, accuracy : float = 5.0):
+	# 1. Clean up the direction vector and keep it on the local XZ plane
+	var direction = local_direction.normalized()
+	direction.y = 0
+	
+	# If the vector is empty (e.g., trying to look straight UP or DOWN), skip
+	if direction.length_squared() < 0.001:
+		tasks.remove_at(0)
+		return
+		
+	direction = direction.normalized()
+	
+	# 2. Create the target basis entirely in local space
+	var target_basis = Basis.looking_at(direction)
+	
+	# 3. Smoothly rotate the local basis
+	basis = basis.slerp(target_basis, rotation_speed * delta)
+	
+	# 4. Calculate the difference between current local forward (-basis.z) 
+	# and our target local direction
+	var current_forward = -basis.z
+	var angle_difference_deg = rad_to_deg(current_forward.angle_to(direction))
+	
+	# 5. Turn complete! Move to the next task
+	if angle_difference_deg <= accuracy:
+		tasks.remove_at(0)
+
 
 # Helper function to handle the await safely
 func handle_craft_task(task):
@@ -150,6 +186,8 @@ func pickup_product(exp_task):
 	if held_item == null:
 		tasks.remove_at(0)
 		tasks.remove_at(0)
+		tasks.remove_at(0)
+
 
 func buy_item(exp_task):
 	is_processing = true
@@ -170,7 +208,6 @@ func sell_item(exp_task):
 	exp_task["target"].check_register()
 	tasks.remove_at(0)
 	is_processing = false
-	state_machine.travel("idle")
 
 func deliver_item(exp_target):
 	if exp_target.has_method("store_item"):
@@ -208,35 +245,35 @@ func generate_tasks(job):
 	
 	if job is DeliverItemJob:
 		var import_storage = building.get_import_storage()
-		tasks.append({"type": "move", "target_position": import_storage.global_position})
+		tasks.append({"type": "move", "target_position": import_storage.global_position,"accuracy" : 1.0,"running": false})
 		tasks.append({"type": "pickup", "target": import_storage, "item": job.item})
-		tasks.append({"type": "move", "target_position": job.target.global_position})
+		tasks.append({"type": "move", "target_position": job.target.global_position,"accuracy" : 1.0,"running": false})
 		tasks.append({"type": "deliver", "target": job.target})
 		
 	elif job is CraftJob:
-		tasks.append({"type": "move", "target_position": job.workstation.global_position})
+		tasks.append({"type": "move", "target_position": job.workstation.global_position,"accuracy" : 1.0,"running": false})
 		tasks.append({"type": "craft", "duration": job.craft_time})
 		
 	elif job is HaulOutputJob:
 		var export_storage = building.get_export_storage()
 		var import_storage = building.get_import_storage()
-		tasks.append({"type": "move", "target_position": job.workstation.global_position})
+		tasks.append({"type": "move", "target_position": job.workstation.global_position,"accuracy" : 1.0,"running": false})
 		tasks.append({"type": "pickup_output", "target": job.workstation})
 		if not job.is_material:
-			tasks.append({"type": "move", "target_position": export_storage.global_position})
+			tasks.append({"type": "move", "target_position": export_storage.global_position,"accuracy" : 1.0,"running": false})
 			tasks.append({"type": "store_output", "target": export_storage})
 		else:
-			tasks.append({"type": "move", "target_position": import_storage.global_position})
+			tasks.append({"type": "move", "target_position": import_storage.global_position,"accuracy" : 1.0,"running": false})
 			tasks.append({"type": "store_output", "target": import_storage})
 	elif job is ClearingJob:
 		var import_storage = building.get_import_storage()
-		tasks.append({"type": "move", "target_position": job.shelf.global_position})
+		tasks.append({"type": "move", "target_position": job.shelf.global_position,"accuracy" : 1.0,"running": false})
 		tasks.append({"type": "pickup", "target": job.shelf, "item": job.item})
-		tasks.append({"type": "move", "target_position": import_storage.global_position})
+		tasks.append({"type": "move", "target_position": import_storage.global_position,"accuracy" : 1.0,"running": false})
 		tasks.append({"type": "deliver", "target": import_storage})
 	elif job is BuyJob:
 		var door_position = job.shop.get_door_position()
-		var shop_register = job.shop.get_shop_register()
+		var register = job.shop.get_shop_register()
 		var shelf_with_item = job.shop.get_shelf_with_item(job.item)
 		var home_position = home.get_door_position()
 		
@@ -246,7 +283,7 @@ func generate_tasks(job):
 			DebugWindow.warn("\t- Missing: Door Position")
 			requirements_met = false
 
-		if not shop_register:
+		if not register:
 			DebugWindow.warn("\t- Missing: Shop Register")
 			requirements_met = false
 
@@ -263,18 +300,21 @@ func generate_tasks(job):
 			tasks.append({"type" : "return"})
 			return
 		
-		tasks.append({"type": "move", "target_position": door_position})
-		tasks.append({"type": "move", "target_position": shelf_with_item.global_position})
+		tasks.append({"type": "move", "target_position": door_position,"accuracy" : 1.0,"running": false})
+		tasks.append({"type": "move", "target_position": shelf_with_item.global_position,"accuracy" : 1.0,"running": false})
 		tasks.append({"type": "pickup_product", "target": shelf_with_item, "item": job.item})
-		tasks.append({"type": "move", "target_position": shop_register.global_position})
-		tasks.append({"type": "buy_item", "target": shop_register})
-		tasks.append({"type": "move", "target_position": door_position})
-		tasks.append({"type": "move", "target_position": home_position})
+		tasks.append({"type": "move", "target_position": register.get_buyer_position(),"accuracy" : 0.2,"running": false})
+		tasks.append({"type": "rotate", "target_position": register.get_buyer_rotation_target()})
+		tasks.append({"type": "buy_item", "target": register})
+		tasks.append({"type": "move", "target_position": door_position,"accuracy" : 1.0,"running": false})
+		tasks.append({"type": "move", "target_position": home_position,"accuracy" : 1.0,"running": false})
 		tasks.append({"type": "return"})
 	elif job is SellJob:
+		var register = job.register
 		var register_position = job.register.global_position
-		tasks.append({"type": "move", "target_position": register_position})
-		tasks.append({"type": "sell_item", "target": job.register})
+		tasks.append({"type": "move", "target_position": register.get_seller_position(),"accuracy" : 0.2,"running": false})
+		tasks.append({"type": "rotate", "target_position": register.get_seller_rotation_target()})
+		tasks.append({"type": "sell_item", "target": register})
 	else:
 		var wander_position = self.global_position + Vector3(randf_range(-3,3),0,randf_range(-3,3))
 		tasks.append({"type": "wander","position": wander_position})

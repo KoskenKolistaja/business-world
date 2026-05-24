@@ -21,6 +21,8 @@ func _exit_tree():
 func spawn_customer(customer_position,customer_home):
 	var job = generate_buy_job(customer_home)
 	var customer_instance = customer_scene.instantiate()
+	if not job:
+		return
 	customer_container.add_child(customer_instance)
 	customer_instance.global_position = customer_position
 	customer_instance.home = customer_home
@@ -34,7 +36,7 @@ func generate_buy_job(customer_home) -> BuyJob:
 	job.amount = 1
 	if ProductManager.products.is_empty():
 		DebugWindow.warn("No products to choose from")
-		return
+		return null
 	var wanted_item_dic : Dictionary = ProductManager.products.pick_random()
 	var wanted_item : ItemData = wanted_item_dic["data"]
 	job.item = wanted_item_dic["data"]
