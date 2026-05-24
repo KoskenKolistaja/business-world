@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://cq0h6g7srph0p"]
 
 [ext_resource type="Script" uid="uid://c7xs8kmlw0iu" path="res://Entities/Roads/lane.gd" id="1_onsmh"]
+[ext_resource type="Script" uid="uid://bt6pxtkafkaua" path="res://Entities/Roads/car_storage.gd" id="1_pjc7n"]
 [ext_resource type="Script" uid="uid://cjhmc22lbnxqn" path="res://Entities/Roads/socket.gd" id="2_pjc7n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdbeb"]
@@ -124,16 +125,18 @@ _data = {
 point_count = 2
 
 [node name="CarStorage" type="Node3D" unique_id=2130952567]
+script = ExtResource("1_pjc7n")
 
 [node name="Mesh" type="Node3D" parent="." unique_id=210024076]
 
 [node name="Straight" type="MeshInstance3D" parent="Mesh" unique_id=1902051372]
 mesh = SubResource("ArrayMesh_eog0x")
 
-[node name="LaneForward" type="Node3D" parent="." unique_id=183109630 node_paths=PackedStringArray("path", "out_socket")]
+[node name="LaneForward" type="Node3D" parent="." unique_id=183109630 node_paths=PackedStringArray("path", "in_socket", "out_socket") groups=["lane"]]
 unique_name_in_owner = true
 script = ExtResource("1_onsmh")
 path = NodePath("ForwardPath")
+in_socket = NodePath("FInSocket")
 out_socket = NodePath("FOutSocket")
 
 [node name="ForwardPath" type="Path3D" parent="LaneForward" unique_id=911502624]
@@ -158,11 +161,13 @@ lane = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 mesh = SubResource("SphereMesh_pl868")
 
-[node name="LaneBackward" type="Node3D" parent="." unique_id=1575954932 node_paths=PackedStringArray("path", "building", "out_socket")]
+[node name="LaneBackward" type="Node3D" parent="." unique_id=1575954932 node_paths=PackedStringArray("path", "building", "in_socket", "out_socket") groups=["lane"]]
 unique_name_in_owner = true
 script = ExtResource("1_onsmh")
 path = NodePath("BackwardPath")
+is_restricted = true
 building = NodePath("..")
+in_socket = NodePath("BInSocket")
 out_socket = NodePath("BOutSocket")
 
 [node name="BackwardPath" type="Path3D" parent="LaneBackward" unique_id=461818221]

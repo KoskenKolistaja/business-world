@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ua0divcm1iso" path="res://Entities/Buildings/Flat/flat.tscn" id="5_q6pcp"]
 [ext_resource type="PackedScene" uid="uid://krs5wxq2erbm" path="res://Entities/Npcs/Worker/worker.tscn" id="5_rqcao"]
 [ext_resource type="PackedScene" uid="uid://cqfepnrqr524c" path="res://Tests/road_test.tscn" id="7_hc5gq"]
+[ext_resource type="PackedScene" uid="uid://cq0h6g7srph0p" path="res://Entities/Roads/car_storage.tscn" id="8_pwrig"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y7ngv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -38,7 +39,7 @@ use_collision = true
 size = Vector3(100, 1, 100)
 
 [node name="TestBuilding" parent="." unique_id=160489447 instance=ExtResource("1_tik66")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -6)
 
 [node name="PlayerHandler" type="Node3D" parent="." unique_id=2104160144]
 script = ExtResource("2_47p0u")
@@ -48,7 +49,7 @@ transform = Transform3D(0.7677009, 0.44833285, -0.4578569, 0, 0.71449906, 0.6996
 current = true
 
 [node name="Shop" parent="." unique_id=1008739553 instance=ExtResource("3_c7ngr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 2)
 
 [node name="CustomerManager" type="Node" parent="." unique_id=1270044351 node_paths=PackedStringArray("customer_container")]
 script = ExtResource("4_an8ox")
@@ -56,15 +57,27 @@ customer_scene = ExtResource("5_rqcao")
 customer_container = NodePath("../CustomerContainer")
 
 [node name="Flat" parent="." unique_id=1883005245 instance=ExtResource("5_q6pcp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 13)
 
 [node name="Flat2" parent="." unique_id=658464 instance=ExtResource("5_q6pcp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 19)
 
 [node name="Flat3" parent="." unique_id=968298480 instance=ExtResource("5_q6pcp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 25)
 
 [node name="CustomerContainer" type="Node3D" parent="." unique_id=478893473]
 
-[node name="RoadTest" parent="." unique_id=914592734 instance=ExtResource("7_hc5gq")]
+[node name="RoadTest" parent="." unique_id=914592734 node_paths=PackedStringArray("car_storage_a", "car_storage_b", "car_storage_c") instance=ExtResource("7_hc5gq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 21)
+car_storage_a = NodePath("../CarStorage")
+car_storage_b = NodePath("../CarStorage2")
+car_storage_c = NodePath("../CarStorage3")
+
+[node name="CarStorage" parent="." unique_id=2130952567 instance=ExtResource("8_pwrig")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -12, 0, 3)
+
+[node name="CarStorage2" parent="." unique_id=48384714 instance=ExtResource("8_pwrig")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 12, 0, 3)
+
+[node name="CarStorage3" parent="." unique_id=1988443516 instance=ExtResource("8_pwrig")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, 0, 33)

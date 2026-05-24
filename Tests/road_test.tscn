@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cqfepnrqr524c"]
 
 [ext_resource type="PackedScene" uid="uid://sxnyaaoetb8k" path="res://Entities/Roads/straight.tscn" id="1_s8yc0"]
+[ext_resource type="Script" uid="uid://ctgjayyovppv1" path="res://Tests/road_test.gd" id="1_x50vd"]
 [ext_resource type="PackedScene" uid="uid://dycs7uo0kirm0" path="res://Entities/Cars/test_car.tscn" id="2_8igwp"]
 [ext_resource type="PackedScene" uid="uid://dcua53eh7udj4" path="res://Entities/Roads/curve.tscn" id="3_8igwp"]
 [ext_resource type="PackedScene" uid="uid://bp3kl6se1b1ne" path="res://Entities/Roads/t_section.tscn" id="4_184ga"]
-[ext_resource type="PackedScene" uid="uid://cq0h6g7srph0p" path="res://Entities/Roads/car_storage.tscn" id="5_x50vd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s8yc0"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -20,6 +20,8 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="RoadTest" type="Node3D" unique_id=914592734]
+script = ExtResource("1_x50vd")
+car_scene = ExtResource("2_8igwp")
 
 [node name="Straight" parent="." unique_id=148027384 instance=ExtResource("1_s8yc0")]
 
@@ -41,7 +43,7 @@ road = NodePath("../Straight4")
 
 [node name="Car5" parent="." unique_id=58229496 node_paths=PackedStringArray("road") instance=ExtResource("2_8igwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 2)
-road = NodePath("../Straight8")
+road = NodePath("../Straight3")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1872666251]
 transform = Transform3D(0.9997216, 0.018819937, -0.014234584, 0, 0.6032397, 0.7975599, 0.023596896, -0.79733783, 0.60307175, -9.873742, 16.90633, 11.936423)
@@ -58,13 +60,12 @@ shadow_enabled = true
 [node name="Curve" parent="." unique_id=402750246 instance=ExtResource("3_8igwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
 
-[node name="Curve2" parent="." unique_id=824362035 instance=ExtResource("3_8igwp")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, -12)
-
 [node name="Straight3" parent="." unique_id=1097392546 instance=ExtResource("1_s8yc0")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -6)
 
 [node name="Straight4" parent="." unique_id=887063140 instance=ExtResource("1_s8yc0")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
 [node name="Curve3" parent="." unique_id=528556006 instance=ExtResource("3_8igwp")]
@@ -97,9 +98,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18,
 [node name="TSection4" parent="." unique_id=1863099696 instance=ExtResource("4_184ga")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 6)
 
-[node name="Straight8" parent="." unique_id=1104015253 instance=ExtResource("1_s8yc0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 0, 6)
-
 [node name="Straight9" parent="." unique_id=1518620108 instance=ExtResource("1_s8yc0")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12, 0, 6)
 
@@ -114,6 +112,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 0)
 
 [node name="TSection5" parent="." unique_id=1493396799 instance=ExtResource("4_184ga")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18, 0, -12)
+private_connection = true
 
-[node name="CarStorage" parent="." unique_id=2130952567 instance=ExtResource("5_x50vd")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -18, 0, -18)
+[node name="TSection6" parent="." unique_id=1179626755 instance=ExtResource("4_184ga")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0, -12)
+private_connection = true
+
+[node name="Timer" type="Timer" parent="." unique_id=1208075187]
+wait_time = 10.0
+autostart = true
+
+[node name="TSection7" parent="." unique_id=956734184 instance=ExtResource("4_184ga")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 0, 6)
+private_connection = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

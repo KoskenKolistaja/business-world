@@ -231,6 +231,7 @@ font_size = 128
 unique_name_in_owner = true
 
 [node name="delivery" type="Node3D" parent="Meshes" unique_id=1387821693]
+unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
 

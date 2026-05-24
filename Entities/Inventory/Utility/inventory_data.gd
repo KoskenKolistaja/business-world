@@ -66,10 +66,6 @@ func room_for_item(item_data: ItemData, amount: int = 1) -> int:
 ## Erases a specific amount of an item, potentially from multiple slots
 func erase_item(item_data: ItemData, amount_to_erase: int = 1) -> bool:
 	
-	if slots[0].item:
-		print("INVENTORY SLOT 0 ITEM: " + str(slots[0].item))
-	
-	print("PARAMETER NAME: " + str(item_data))
 	
 	# 1. Verification Phase: Do we have enough before we start deleting?
 	if not has_amount_of_item(item_data, amount_to_erase):

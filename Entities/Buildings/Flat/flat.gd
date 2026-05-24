@@ -10,7 +10,7 @@ func get_door_position():
 
 func _on_timer_timeout():
 	request_spawn_customer()
-	%Timer.wait_time = randf_range(2,20)
+	%Timer.wait_time = randf_range(5,40)
 
 
 func request_spawn_customer():

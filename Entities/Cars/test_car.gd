@@ -8,14 +8,21 @@ var progress : float = 0.0
 
 var speed : float = 5.0
 
+var directions
+
+var is_truck : bool = false
 
 func _ready():
-	lane = road.get_lane()
+	if not lane:
+		lane = road.get_lane()
 	speed = randf_range(4,6)
 	
-	var meshes = %Meshes.get_children()
-	var random = meshes.pick_random()
-	random.show()
+	if not is_truck:
+		var meshes = %Meshes.get_children()
+		var random = meshes.pick_random()
+		random.show()
+	else:
+		%delivery.show()
 
 
 func _physics_process(delta):
@@ -25,7 +32,14 @@ func _physics_process(delta):
 	if progress >= lane.length:
 		
 		progress -= lane.length
-		lane = lane.get_next_lane(self)
+		if not directions:
+			lane = lane.get_next_lane(self)
+		else:
+			directions.remove_at(0)
+			if directions.is_empty():
+				queue_free()
+			else:
+				lane = directions[0]
 	
 	# 1. Set the current global position
 	var pos = lane.sample_position(progress)

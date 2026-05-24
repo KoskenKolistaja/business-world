@@ -14,7 +14,9 @@ var next_lanes : Array[Lane] = []
 
 @export var building : Node3D
 
+@export var in_socket : Node3D
 @export var out_socket : Node3D
+
 
 @onready var debug_ball = preload("res://Tests/debug_ball.tscn")
 
@@ -23,10 +25,15 @@ var id = null
 func _ready():
 	var in_sockets = get_tree().get_nodes_in_group("in_socket")
 	
+	await get_tree().create_timer(0.1).timeout
+	
 	for in_socket in in_sockets:
 		var distance = (out_socket.global_position - in_socket.global_position).length()
-		DebugWindow.print(str(distance))
 		if distance < 0.01:
+			if in_socket.get_lane().is_restricted:
+				DebugWindow.error("LANE WAS RESTRICTED")
+				continue
+			
 			next_lanes.append(in_socket.get_lane())
 			DebugWindow.warn("LANE CONNECTED")
 	
@@ -57,14 +64,9 @@ func get_next_lane(caller) -> Lane:
 		else:
 			return self
 	else:
-		var applicable = next_lanes.duplicate()
-		for lane in applicable:
-			if lane.is_restricted:
-				applicable.erase(lane)
 		
-		print(applicable)
 		
-		return applicable.pick_random()
+		return next_lanes.pick_random()
 
 func sample_position(distance : float) -> Vector3:
 	var local_pos = curve.sample_baked(distance)

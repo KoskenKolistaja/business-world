@@ -130,11 +130,12 @@ point_count = 2
 [node name="Curve" type="MeshInstance3D" parent="Road" unique_id=1282608451]
 mesh = SubResource("ArrayMesh_70uat")
 
-[node name="LaneForward" type="Node3D" parent="." unique_id=299455183 node_paths=PackedStringArray("path", "out_socket")]
+[node name="LaneForward" type="Node3D" parent="." unique_id=299455183 node_paths=PackedStringArray("path", "in_socket", "out_socket") groups=["lane"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 script = ExtResource("1_72krq")
 path = NodePath("ForwardPath")
+in_socket = NodePath("FInSocket")
 out_socket = NodePath("FOutSocket")
 
 [node name="ForwardPath" type="Path3D" parent="LaneForward" unique_id=2109143107]
@@ -159,11 +160,12 @@ lane = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 mesh = SubResource("SphereMesh_6j3am")
 
-[node name="LaneBackward" type="Node3D" parent="." unique_id=2019606726 node_paths=PackedStringArray("path", "out_socket")]
+[node name="LaneBackward" type="Node3D" parent="." unique_id=2019606726 node_paths=PackedStringArray("path", "in_socket", "out_socket") groups=["lane"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 script = ExtResource("1_72krq")
 path = NodePath("BackwardPath")
+in_socket = NodePath("BInSocket")
 out_socket = NodePath("BOutSocket")
 
 [node name="BackwardPath" type="Path3D" parent="LaneBackward" unique_id=122734179]
